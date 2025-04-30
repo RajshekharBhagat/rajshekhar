@@ -1,5 +1,5 @@
 import React from "react";
-import MaxWidthWrapper from "../MaxWidthWrapper";
+import MaxWidthWrapper from "./MaxWidthWrapper";
 import Link from "next/link";
 
 const Footer = () => {
@@ -73,14 +73,17 @@ const Footer = () => {
             <h3 className="text-sm font-medium text-white">General</h3>
             <ul className="mt-4 flex flex-col gap-y-3 text-sm">
               <li>
-                <Link className="transition-colors hover:text-neutral-50" href="/">
+                <Link
+                  className="transition-colors hover:text-neutral-50"
+                  href="/"
+                >
                   Home
                 </Link>
               </li>
               <li>
                 <Link
                   className="transition-colors hover:text-neutral-50"
-                  href="/project"
+                  href="/projects"
                 >
                   Projects
                 </Link>
