@@ -43,7 +43,7 @@ const Hero = () => {
         <h1 className="md:text-5xl lg:text-7xl text-3xl font-semibold bg-gradient-to-b md:text-left from-white to-gray-400 bg-clip-text text-transparent text-center">
           Turning ideas into interactive, blazing-fast web experiences.
         </h1>
-        <div className="mt-10 text-3xl md:text-4xl text-center flex flex-col md:inline-block items-center font-semibold bg-gradient-to-b md:text-left from-white to-gray-400 bg-clip-text text-transparent">
+        <div className="mt-10 text-3xl md:text-4xl h-[10rem] text-center flex flex-col md:inline-block items-center font-semibold bg-gradient-to-b md:text-left from-white to-gray-400 bg-clip-text text-transparent">
           <span>I’m Rajshekhar a</span>
           <FlipWords
             className="text-white"
@@ -55,7 +55,7 @@ const Hero = () => {
         <IconCloud images={images} />
       </div>
     </div>
-    <div className="flex items-center justify-center gap-5 mt-20">
+    <div className="flex items-center justify-center gap-5">
     <InteractiveHoverButton>
       Let&apos;s Connect
     </InteractiveHoverButton>

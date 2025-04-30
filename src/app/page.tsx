@@ -9,7 +9,7 @@ import { motion } from "framer-motion";
 export default function Home() {
   return (
     <div>
-      <section className="relative w-full -mt-20 h-[100vh]">
+      <section className="relative w-full -mt-20 min-h-screen">
         <FlickeringGrid
           className="absolute inset-0 size-full z-0"
           squareSize={7}
@@ -22,7 +22,14 @@ export default function Home() {
           <Hero />
         </MaxWidthWrapper>
       </section>
-      <section id="about" className="w-full h-[40rem]">
+
+      <section id='project'>
+        <MaxWidthWrapper className="my-10">
+          <h1 className="text-center text-xl font-semibold">My Recent Project Works</h1>
+        </MaxWidthWrapper>
+      </section>
+
+      <section id="about" className="w-full h-[40rem] mb-10">
         <MaxWidthWrapper className="flex flex-col items-center mt-20">
           <motion.h1
             initial={{ opacity: 0, y: 50 }}
@@ -136,6 +143,7 @@ export default function Home() {
           </motion.div>
         </MaxWidthWrapper>
       </section>
+
     </div>
   );
 }
