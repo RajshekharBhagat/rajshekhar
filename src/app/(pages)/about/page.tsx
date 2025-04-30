@@ -4,6 +4,7 @@ import { AuroraText } from "@/components/magicui/aurora-text";
 import { InteractiveHoverButton } from "@/components/magicui/interactive-hover-button";
 import { Timeline } from "@/components/ui/timeline";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import Link from "next/link";
 
 const Page = () => {
@@ -16,28 +17,28 @@ const Page = () => {
             Built and launched Aceternity UI and Aceternity UI Pro from scratch
           </p>
           <div className="grid grid-cols-2 gap-4">
-            <img
+            <Image
               src="https://assets.aceternity.com/templates/startup-1.webp"
               alt="startup template"
               width={500}
               height={500}
               className="h-20 w-full rounded-lg object-cover shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset] md:h-44 lg:h-60"
             />
-            <img
+            <Image
               src="https://assets.aceternity.com/templates/startup-2.webp"
               alt="startup template"
               width={500}
               height={500}
               className="h-20 w-full rounded-lg object-cover shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset] md:h-44 lg:h-60"
             />
-            <img
+            <Image
               src="https://assets.aceternity.com/templates/startup-3.webp"
               alt="startup template"
               width={500}
               height={500}
               className="h-20 w-full rounded-lg object-cover shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset] md:h-44 lg:h-60"
             />
-            <img
+            <Image
               src="https://assets.aceternity.com/templates/startup-4.webp"
               alt="startup template"
               width={500}
@@ -61,28 +62,28 @@ const Page = () => {
             not. Here are some more example of beautiful designs I built.
           </p>
           <div className="grid grid-cols-2 gap-4">
-            <img
+            <Image
               src="https://assets.aceternity.com/pro/hero-sections.png"
               alt="hero template"
               width={500}
               height={500}
               className="h-20 w-full rounded-lg object-cover shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset] md:h-44 lg:h-60"
             />
-            <img
+            <Image
               src="https://assets.aceternity.com/features-section.png"
               alt="feature template"
               width={500}
               height={500}
               className="h-20 w-full rounded-lg object-cover shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset] md:h-44 lg:h-60"
             />
-            <img
+            <Image
               src="https://assets.aceternity.com/pro/bento-grids.png"
               alt="bento template"
               width={500}
               height={500}
               className="h-20 w-full rounded-lg object-cover shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset] md:h-44 lg:h-60"
             />
-            <img
+            <Image
               src="https://assets.aceternity.com/cards.png"
               alt="cards template"
               width={500}
@@ -118,28 +119,28 @@ const Page = () => {
             </div>
           </div>
           <div className="grid grid-cols-2 gap-4">
-            <img
+            <Image
               src="https://assets.aceternity.com/pro/hero-sections.png"
               alt="hero template"
               width={500}
               height={500}
               className="h-20 w-full rounded-lg object-cover shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset] md:h-44 lg:h-60"
             />
-            <img
+            <Image
               src="https://assets.aceternity.com/features-section.png"
               alt="feature template"
               width={500}
               height={500}
               className="h-20 w-full rounded-lg object-cover shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset] md:h-44 lg:h-60"
             />
-            <img
+            <Image
               src="https://assets.aceternity.com/pro/bento-grids.png"
               alt="bento template"
               width={500}
               height={500}
               className="h-20 w-full rounded-lg object-cover shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset] md:h-44 lg:h-60"
             />
-            <img
+            <Image
               src="https://assets.aceternity.com/cards.png"
               alt="cards template"
               width={500}
@@ -154,11 +155,11 @@ const Page = () => {
 
   return (
     <MaxWidthWrapper className="relative h-fit md:mt-20 mt-10 overflow-hidden mb-10">
-      <div className="grid grid-cols-1 md:grid-cols-[2fr_1fr] gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-[2fr_1fr] gap-6 mb-10">
         <div className="max-w-xl w-full mx-auto">
           <p className="text-sm text-zinc-400">MORE ABOUT ME</p>
           <h1 className="text-2xl md:text-4xl lg:text-5xl font-semibold text-zinc-100 inline-block mt-3 md:mt-6">
-            Hi There! I'm{" "}
+            Hi There! I&apos;m{" "}
             <AuroraText className="font-extrabold">Rajshekhar</AuroraText>
           </h1>
           <p className="mt-3 md:mt-6 text-zinc-400">
@@ -253,7 +254,7 @@ const Page = () => {
         whileInView={{opacity:1,x:0}}
         transition={{duration:0.75}}
         className="text-lg md:text-2xl lg:text-4xl text-center mt-3 md:mt-6 mb-10">
-          I'm Here to Bring Your Ideas to Life
+          I&apos;m Here to Bring Your Ideas to Life
         </motion.p>
         <InteractiveHoverButton>Get in Touch</InteractiveHoverButton>
         <motion.p
