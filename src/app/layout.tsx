@@ -3,19 +3,14 @@ import NavBar from "@/components/NavBar";
 import Transition from "@/components/Transition";
 import { SmoothCursor } from "@/components/ui/smooth-cursor";
 import { cn } from "@/lib/utils";
-import type { Metadata } from "next";
 import { Oxanium } from "next/font/google";
 import "./globals.css";
+import {ReactLenis} from '@/lib/ReactLenis'
 
 
 const oxanium = Oxanium({
   subsets:['latin-ext']
 })
-
-export const metadata: Metadata = {
-  title: "Rajshekhar Bhagat",
-  description: "Personal Portfolio Website.",
-};
 
 export default function RootLayout({
   children,
@@ -24,6 +19,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <ReactLenis root>
       <body
         className={cn(
           oxanium.className,
@@ -32,13 +28,14 @@ export default function RootLayout({
       >
         <SmoothCursor />
         <NavBar />
-        <main className="relative z-[60] flex flex-col overflow-hidden min-h-[calc(100vh-3.5rem)]">
+        <main className="relative flex flex-col overflow-hidden min-h-[calc(100vh-3.5rem)]">
           <Transition className="flex-1 flex flex-col h-full">
             {children}
           </Transition>
         </main>
           <Footer />
       </body>
+      </ReactLenis>
     </html>
   );
 }

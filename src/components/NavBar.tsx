@@ -1,6 +1,6 @@
 "use client";
 import { cn } from "@/lib/utils";
-import { motion } from "framer-motion";
+import { motion, useMotionValueEvent, useScroll } from "framer-motion";
 import { usePathname, useRouter } from "next/navigation";
 import React, {
   ReactNode,
@@ -9,13 +9,43 @@ import React, {
   useRef,
   useState,
 } from "react";
+import SearchBox from "./SearchBox";
 
 const NavBar = () => {
+  const [searchOpen,setSearchOpen] = useState<boolean>(false);
+  const navRef = useRef(null);
+  const [hidden, setHidden] = useState<boolean>(false);
+  const { scrollY } = useScroll();
+  useMotionValueEvent(scrollY, 'change' , (latest) => {
+    const previous = scrollY.getPrevious();
+    if(!previous) return;
+    if(latest > previous && latest > 150) {
+      setHidden(true);
+    } else {
+      setHidden(false);
+    }
+  })
+
   return (
-    <nav className="sticky mx-auto max-w-[1500px] px-3 items-center h-14 z-[99] top-0 backdrop-blur-sm flex justify-between">
-      <h1 className="text-xl md:text-2xl lg:text-3xl">RB</h1>
-      <SlideTab />
-    </nav>
+    <motion.nav
+      variants={{
+        visible: { y: 0 },
+        hidden: { y: "-100%" },
+      }}
+      animate={hidden ? "hidden" : "visible"}
+      initial="visible"
+      transition={{ duration: 0.5, type:'spring' }}
+      ref={navRef}
+      className="sticky z-[99] top-0 w-full h-14 backdrop-blur-sm"
+    >
+      <div className="max-w-[1500px] w-full mx-auto h-full px-3 lg:px-10 flex items-center justify-between">
+        <h1>RB</h1>
+        <SlideTab />
+        <div className="">
+        <SearchBox />
+        </div>
+      </div>
+    </motion.nav>
   );
 };
 export default NavBar;

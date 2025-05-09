@@ -1,6 +1,7 @@
 import React from "react";
 import { Timeline } from "./ui/timeline";
 import { GlowingEffect } from "./ui/glowing-effect";
+import { NeonGradientCard } from "./magicui/neon-gradient-card";
 
 const AboutTimeline = () => {
   const data = [
@@ -10,7 +11,7 @@ const AboutTimeline = () => {
       company: "Thakur College of Science and Commerce",
       location: "Kandivali East, Mumbai",
       content: (
-        <div className="relative p-4 flex flex-col h-[500px] items-center rounded-lg">
+        <div className="relative p-4 flex flex-col h-[500px] border-8 border-zinc-900 items-center rounded-3xl">
           <GlowingEffect
             spread={40}
             glow={true}
@@ -48,14 +49,15 @@ const AboutTimeline = () => {
       company: "Thakur College of Science and Commerce",
       location: "Kandivali East, Mumbai",
       content: (
-        <div className="relative p-4 flex flex-col h-[500px] items-center rounded-lg">
+
+        <div className="relative p-4 flex flex-col h-[500px] border-8 border-zinc-900 items-center rounded-3xl">
           <GlowingEffect
             spread={40}
             glow={true}
             disabled={false}
             proximity={64}
             inactiveZone={0.01}
-          />
+            />
           <p className="mb-3 text-xs font-normal md:text-sm text-zinc-200">
             Pursuing a postgraduate degree with a focus on advanced concepts in
             computer science, software architecture, data science, and cloud
@@ -81,7 +83,7 @@ const AboutTimeline = () => {
     },
   ];
   return (
-    <div className="relative w-full overflow-clip">
+    <div className="relative min-h-screen w-full overflow-clip">
       <Timeline data={data} />
     </div>
   );

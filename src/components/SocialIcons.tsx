@@ -3,7 +3,7 @@ import React from 'react'
 
 const SocialIcons = () => {
   return (
-    <div className="flex gap-3 mt-4">
+    <div className="w-full h-full flex items-center gap-3 mt-4">
             <Link
               href={"https://www.linkedin.com/in/rajshekhar-bhagat-291425242"}
             >

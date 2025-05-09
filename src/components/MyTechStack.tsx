@@ -336,8 +336,9 @@ const MyTechStack = () => {
           alt={"TechStackBackground"}
           />
           </motion.div>
-          <div className="absolute inset-0 -z-9 bg-gradient-to-b from-zinc-950/90 via-transparent to-zinc-950/90 pointer-events-none" />
-        <div className="absolute inset-0 top-0 -z-[9] backdrop-blur-xs bg-gradient-to-b from-zinc-950 via-transparent to-zinc-950"></div>
+          <div className="absolute inset-0 -z-9 bg-gradient-to-b from-zinc-950 via-transparent to-zinc-950 pointer-events-none" />
+        <div className="absolute inset-0 top-0 -z-[9] backdrop-blur-xs bg-gradient-to-l from-zinc-950 via-transparent to-zinc-950"></div>
+
         <MaxWidthWrapper>
           <div className="flex flex-col items-center">
             <h1 className="text-sm font-semibold text-zinc-500">
