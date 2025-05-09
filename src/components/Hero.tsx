@@ -1,8 +1,10 @@
+'use client';
 import { Clipboard } from "lucide-react";
 import { useState } from "react";
 import { IconCloud } from "./magicui/icon-cloud";
 import { InteractiveHoverButton } from "./magicui/interactive-hover-button";
 import { FlipWords } from "./ui/flip-words";
+import ContactDrawer from "./ContactDrawer";
 
 const slugs = [
   "typescript",
@@ -33,7 +35,7 @@ const slugs = [
 ];
 
 const Hero = () => {
-
+  const [open,setOpen] = useState<boolean>(false);
   const [copySuccess, setCopySuccess] = useState<boolean>(false)
 
   const images = slugs.map(
@@ -71,9 +73,11 @@ const Hero = () => {
       </div>
     </div>
     <div className="flex flex-col sm:flex-row items-center justify-center gap-10 mt-10">
-    <InteractiveHoverButton className="cursor-none">
+    <ContactDrawer open={open} setOpen={setOpen}>
+    <InteractiveHoverButton onClick={() => setOpen(!open)} className="cursor-none">
       Let&apos;s Connect
     </InteractiveHoverButton>
+    </ContactDrawer>
     <div onClick={copyText} className="flex relative z-20 items-center gap-2 hover:scale-110 transition-transform">
       {
         copySuccess ? (

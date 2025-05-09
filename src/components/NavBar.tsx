@@ -10,9 +10,9 @@ import React, {
   useState,
 } from "react";
 import SearchBox from "./SearchBox";
+import ContactDrawer from "./ContactDrawer";
 
 const NavBar = () => {
-  const [searchOpen,setSearchOpen] = useState<boolean>(false);
   const navRef = useRef(null);
   const [hidden, setHidden] = useState<boolean>(false);
   const { scrollY } = useScroll();
@@ -64,6 +64,8 @@ const SlideTab = () => {
   const [activeTab, setActiveTab] = useState<HTMLElement | null>(null);
   const containerRef = useRef<HTMLUListElement | null>(null);
   const pathname = usePathname();
+  const [open,setOpen] = useState<boolean>(false);
+
 
   const getTabFromPath = (path: string) => {
     switch (path) {
@@ -105,7 +107,7 @@ const SlideTab = () => {
       ref={containerRef}
       className="relative hidden md:flex w-fit overflow-clip justify-around rounded-full mx-auto border-2 border-zinc-400 p-1"
     >
-      {["Home", "Projects", "About", "Blog", "More", "Book a Call"].map(
+      {["Home", "Projects", "About", "Blog", "More"].map(
         (tab, index) => (
           <Tab
             key={index}
@@ -118,6 +120,16 @@ const SlideTab = () => {
           </Tab>
         )
       )}
+      <ContactDrawer open={open} setOpen={setOpen}>
+      <Tab
+            tabName="Book a Call"
+            setPosition={setPosition}
+            setActiveTab={setActiveTab}
+            isActive={activeTab?.textContent === "Book a Call"}
+            >
+            Book a Call
+          </Tab>
+      </ContactDrawer>
       <Cursor position={position} />
     </ul>
   );
@@ -173,6 +185,7 @@ const Tab = ({
       setActiveTab(ref.current);
     }
     const route = getRouteFromTab(tabName);
+    if(route === '/contact') return;
     router.push(route);
   };
 

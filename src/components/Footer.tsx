@@ -120,7 +120,6 @@ const Footer = () => {
             >
               rajbhagat27889@gmail.com
             </Link>
-            <Link href={'https://aayushbharti.in/'}>ayyush</Link>
           </p>
         </div>
       </MaxWidthWrapper>
