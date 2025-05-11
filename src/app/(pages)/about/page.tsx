@@ -71,7 +71,10 @@ const Page = () => {
               </motion.div>
               {/* <FreeDisc /> */}
             </div>
-            <div className="lg:hidden flex flex-col items-center justify-center h-[30rem] w-full max-w-[30rem]" >
+            <div className="lg:hidden block">
+            {/* <DraggableProfile /> */}
+            </div>
+            {/* <div className="lg:hidden flex flex-col items-center justify-center h-[30rem] w-full max-w-[30rem]" >
             <motion.div
                 animate={{
                   y: [
@@ -98,7 +101,7 @@ const Page = () => {
                   className="object-cover bg-scroll shrink-0 pointer-events-none"
                 />
               </motion.div>
-            </div>
+            </div> */}
           </div>
           <div className="md:h-[30rem] h-[20rem] -mb-20 w-full bg-zinc-950 flex flex-col items-center overflow-hidden rounded-md md:mt-30">
             <h1 className=" font-extrabold text-zinc-400">THE EXPERIENCE</h1>

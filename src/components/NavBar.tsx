@@ -1,4 +1,5 @@
 "use client";
+
 import { cn } from "@/lib/utils";
 import { motion, useMotionValueEvent, useScroll } from "framer-motion";
 import { usePathname, useRouter } from "next/navigation";
@@ -16,15 +17,16 @@ const NavBar = () => {
   const navRef = useRef(null);
   const [hidden, setHidden] = useState<boolean>(false);
   const { scrollY } = useScroll();
-  useMotionValueEvent(scrollY, 'change' , (latest) => {
+
+  useMotionValueEvent(scrollY, "change", (latest) => {
     const previous = scrollY.getPrevious();
-    if(!previous) return;
-    if(latest > previous && latest > 150) {
+    if (!previous) return;
+    if (latest > previous && latest > 150) {
       setHidden(true);
     } else {
       setHidden(false);
     }
-  })
+  });
 
   return (
     <motion.nav
@@ -34,20 +36,21 @@ const NavBar = () => {
       }}
       animate={hidden ? "hidden" : "visible"}
       initial="visible"
-      transition={{ duration: 0.5, type:'spring' }}
+      transition={{ duration: 0.5, type: "spring" }}
       ref={navRef}
       className="sticky z-[99] top-0 w-full h-14 backdrop-blur-sm"
     >
       <div className="max-w-[1500px] w-full mx-auto h-full px-3 lg:px-10 flex items-center justify-between">
-        <h1>RB</h1>
+        <h1 className="text-white font-bold">RB</h1>
         <SlideTab />
-        <div className="">
-        <SearchBox />
+        <div>
+          <SearchBox />
         </div>
       </div>
     </motion.nav>
   );
 };
+
 export default NavBar;
 
 const SlideTab = () => {
@@ -64,8 +67,7 @@ const SlideTab = () => {
   const [activeTab, setActiveTab] = useState<HTMLElement | null>(null);
   const containerRef = useRef<HTMLUListElement | null>(null);
   const pathname = usePathname();
-  const [open,setOpen] = useState<boolean>(false);
-
+  const [open, setOpen] = useState(false);
 
   const getTabFromPath = (path: string) => {
     switch (path) {
@@ -100,36 +102,36 @@ const SlideTab = () => {
         opacity: 1,
       });
     }
-  }, [pathname]);
+  }, [pathname && open]);
 
   return (
     <ul
       ref={containerRef}
       className="relative hidden md:flex w-fit overflow-clip justify-around rounded-full mx-auto border-2 border-zinc-400 p-1"
     >
-      {["Home", "Projects", "About", "Blog", "More"].map(
-        (tab, index) => (
-          <Tab
-            key={index}
-            tabName={tab}
-            setPosition={setPosition}
-            setActiveTab={setActiveTab}
-            isActive={activeTab?.textContent === tab}
-          >
-            {tab}
-          </Tab>
-        )
-      )}
+      {["Home", "Projects", "About", "Blog", "More"].map((tab, index) => (
+        <Tab
+          key={index}
+          tabName={tab}
+          setPosition={setPosition}
+          setActiveTab={setActiveTab}
+          isActive={activeTab?.textContent === tab}
+        >
+          {tab}
+        </Tab>
+      ))}
       <ContactDrawer open={open} setOpen={setOpen}>
-      <Tab
-            tabName="Book a Call"
-            setPosition={setPosition}
-            setActiveTab={setActiveTab}
-            isActive={activeTab?.textContent === "Book a Call"}
-            >
-            Book a Call
-          </Tab>
+        <Tab
+          isActive={activeTab?.textContent === "Book a Call"}
+          setActiveTab={setActiveTab}
+          setPosition={setPosition}
+          tabName="Book a Call"
+          onClickCustom={() => setOpen(true)}
+        >
+          Book a Call
+        </Tab>
       </ContactDrawer>
+
       <Cursor position={position} />
     </ul>
   );
@@ -142,6 +144,7 @@ const Tab = ({
   setActiveTab,
   isActive,
   tabName,
+  onClickCustom,
 }: {
   children: ReactNode;
   className?: string;
@@ -151,6 +154,7 @@ const Tab = ({
   setActiveTab: (el: HTMLLIElement | null) => void;
   isActive: boolean;
   tabName: string;
+  onClickCustom?: () => void;
 }) => {
   const ref = useRef<HTMLLIElement | null>(null);
   const router = useRouter();
@@ -184,8 +188,11 @@ const Tab = ({
     if (ref.current) {
       setActiveTab(ref.current);
     }
+    if (onClickCustom) {
+      onClickCustom();
+      return;
+    }
     const route = getRouteFromTab(tabName);
-    if(route === '/contact') return;
     router.push(route);
   };
 
@@ -198,7 +205,7 @@ const Tab = ({
       onMouseLeave={handleMouseLeave}
       onClick={handleClick}
       className={cn(
-        "relative uppercase z-10 px-3 py-1.5 text-sm text-white mix-blend-difference",
+        "relative uppercase z-10 px-3 py-1.5 text-sm text-white mix-blend-difference cursor-none",
         className
       )}
     >

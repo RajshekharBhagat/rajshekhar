@@ -1,47 +1,15 @@
 'use client';
 import { Clipboard } from "lucide-react";
 import { useState } from "react";
-import { IconCloud } from "./magicui/icon-cloud";
 import { InteractiveHoverButton } from "./magicui/interactive-hover-button";
 import { FlipWords } from "./ui/flip-words";
 import ContactDrawer from "./ContactDrawer";
+import RotatingIconCloud from "./RotatingIconCloud";
 
-const slugs = [
-  "typescript",
-  "javascript",
-  "dart",
-  "java",
-  "react",
-  "flutter",
-  "android",
-  "html5",
-  "css3",
-  "nodedotjs",
-  "express",
-  "nextdotjs",
-  "prisma",
-  "amazonaws",
-  "postgresql",
-  "firebase",
-  "vercel",
-  "testinglibrary",
-  "jest",
-  "cypress",
-  "docker",
-  "git",
-  "github",
-  "visualstudiocode",
-  "androidstudio",
-];
 
 const Hero = () => {
   const [open,setOpen] = useState<boolean>(false);
   const [copySuccess, setCopySuccess] = useState<boolean>(false)
-
-  const images = slugs.map(
-    (slug) => `https://cdn.simpleicons.org/${slug}/${slug}`
-  );
-
   async function copyText() {
     try {
       await window.navigator.clipboard.writeText('rajbhagat27889@gmail.com')
@@ -69,7 +37,7 @@ const Hero = () => {
         </div>
       </div>
       <div className="relative hidden md:flex size-full items-center justify-center overflow-hidden">
-        <IconCloud images={images} />
+        <RotatingIconCloud />
       </div>
     </div>
     <div className="flex flex-col sm:flex-row items-center justify-center gap-10 mt-10">

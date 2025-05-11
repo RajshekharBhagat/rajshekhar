@@ -9,7 +9,7 @@ import ContactDrawer from "./ContactDrawer";
 import MagneticContainer from "./MagneticContainer";
 
 const GetInTouch = () => {
-  const [open,setOpen] = useState<boolean>(false);
+  const [open, setOpen] = useState<boolean>(false);
   return (
     <div className="relative w-full h-full min-h-screen flex flex-col justify-center overflow-hidden items-center">
       <div className="absolute inset-0 bg-black/40 -z-[9]" />
@@ -39,11 +39,14 @@ const GetInTouch = () => {
         I&apos;m Here to Bring Your Ideas to Life
       </motion.p>
       <MagneticContainer>
-          <ContactDrawer open={open} setOpen={setOpen}>
-          <InteractiveHoverButton onClick={() => setOpen(!open)} className="cursor-none">
+        <ContactDrawer open={open} setOpen={setOpen}>
+          <InteractiveHoverButton
+            onClick={() => setOpen(!open)}
+            className="cursor-none"
+          >
             Get in Touch
           </InteractiveHoverButton>
-          </ContactDrawer>
+        </ContactDrawer>
       </MagneticContainer>
 
       <motion.p

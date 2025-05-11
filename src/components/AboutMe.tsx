@@ -1,11 +1,11 @@
 "use client";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { CircleArrowRight } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
 import { useRef } from "react";
 import MaxWidthWrapper from "./MaxWidthWrapper";
 import { AuroraText } from "./magicui/aurora-text";
+
 const AboutMe = () => {
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({
@@ -140,27 +140,6 @@ const AboutMe = () => {
             </motion.div>
           </div>
           <div className="relative h-screen lg:flex flex-col justify-center items-center hidden">
-            <motion.div
-              animate={{
-                y: [
-                  -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 4, 3, 2, 1, 0, -1, -2,
-                  -3, -4, -5,
-                ],
-              }}
-              transition={{
-                repeat: Infinity,
-                duration: 3,
-              }}
-              className="relative shadow-2xl shadow-zinc-500 h-[70%] w-[80%] rounded-4xl overflow-clip"
-            >
-              <Image
-                src={"/profilePicture.png"}
-                alt="Profile Picture"
-                fill
-                className="object-cover shrink-0 pointer-events-none"
-              />
-            </motion.div>
-            {/* <FreeDisc /> */}
           </div>
         </div>
       </MaxWidthWrapper>

@@ -4,6 +4,8 @@ import GetInTouch from "@/components/GetInTouch";
 import Hero from "@/components/Hero";
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import MyTechStack from "@/components/MyTechStack";
+import Projects from "@/components/Projects";
+import ScrollingText from "@/components/ScrollingText";
 import { FlickeringGrid } from "@/components/magicui/flickering-grid";
 
 export default function Home() {
@@ -25,15 +27,13 @@ export default function Home() {
           <Hero />
         </MaxWidthWrapper>
       </section>
-      {/* <section
-        id="project"
-        className="relative w-full min-h-screen overflow-hidden border"
-      >
+      <section>
         <Projects />
-      </section> */}
+      </section>
       <section id='techStack' className="relative w-full min-h-screen overflow-hidden flex flex-col items-center justify-center">
         <MyTechStack />
       </section>
+      <ScrollingText />
       <section id="about" className="relative w-full min-h-screen overflow-hidden flex flex-col items-center justify-center">
         <AboutMe />
       </section>
