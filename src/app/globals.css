@@ -3,24 +3,18 @@
 @import "lenis/dist/lenis.css";
 @custom-variant dark (&:is(.dark *));
 
-.black-textile-background {
-  background-image: url('https://unsplash.com/photos/black-textile-on-white-textile-W_5Eakb1598.png');
-  object-fit: contain;
-}
 
-.navbar-blur-fade {
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  mask-image: linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,0.2));
-  -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,0.2));
-}
-/* Add to your global CSS (e.g., globals.css) */
+
 .scrollbar-hidden::-webkit-scrollbar {
   display: none;
 }
 .scrollbar-hidden {
-  -ms-overflow-style: none; /* IE/Edge */
-  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;
+  scrollbar-width: none; 
+}
+
+* {
+  scrollbar-width: none;
 }
 
 @theme inline {

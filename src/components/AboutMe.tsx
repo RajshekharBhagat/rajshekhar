@@ -1,26 +1,53 @@
 "use client";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useMotionValue, useSpring } from "framer-motion";
 import { CircleArrowRight } from "lucide-react";
 import Link from "next/link";
 import { useRef } from "react";
+import HoverProfile from "./HoverProfile";
+import MagicWand from "./MagicWand";
 import MaxWidthWrapper from "./MaxWidthWrapper";
 import { AuroraText } from "./magicui/aurora-text";
 
 const AboutMe = () => {
-  const ref = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start center", "start start"],
-  });
+  const ref = useRef<HTMLDivElement | null>(null);
 
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
+  const SpringOption = {
+    stiffness: 200,
+    damping: 25,
+  }
 
+  const position = {
+    x: useMotionValue(0),
+    y: useMotionValue(0),
+  }
+  const WantPosition = {
+    x:useSpring(position.x,SpringOption),
+    y:useSpring(position.y,SpringOption),
+  }
+  const handleMouseMove = (e:React.MouseEvent) => {
+    const rect = ref.current?.getBoundingClientRect();
+    if(rect) {
+      position.x.set(e.clientX - rect.left);
+      position.y.set(e.clientY - rect.top);
+    } else {
+      position.x.set(e.clientX);
+      position.y.set(e.clientY);
+    }
+    
+  }
+  const handleMouseLeave = () => {
+    position.x.set(0);
+    position.y.set(0);
+  }
   return (
     <div
       ref={ref}
       id="about"
+      onMouseMove={(e) => handleMouseMove(e)}
+      onMouseLeave={handleMouseLeave}
       className="relative flex flex-col antialiased items-center justify-center w-full min-h-screen overflow-hidden"
     >
+      <MagicWand position={WantPosition} />
       <MaxWidthWrapper>
         <div className="grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-6 mb-10">
           <div className="max-w-3xl flex flex-col items-center lg:items-start justify-center w-full mx-auto">
@@ -139,7 +166,8 @@ const AboutMe = () => {
               </Link>
             </motion.div>
           </div>
-          <div className="relative h-screen lg:flex flex-col justify-center items-center hidden">
+          <div className="flex flex-col items-center justify-center">
+            <HoverProfile />
           </div>
         </div>
       </MaxWidthWrapper>

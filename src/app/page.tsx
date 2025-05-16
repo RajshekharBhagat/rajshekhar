@@ -13,10 +13,10 @@ export default function Home() {
     <>
       <section
         id="hero"
-        className="relative w-full min-h-screen flex flex-col items-center justify-start md:justify-center overflow-hidden -mt-20 lg:-mt-0"
+        className="relative w-full min-h-screen flex flex-col items-center justify-start md:justify-center overflow-hidden"
       >
         <FlickeringGrid
-          className="absolute inset-0 h-full w-screen"
+          className="absolute inset-0 h-screen w-screen"
           squareSize={7}
           gridGap={9}
           color="#6B7280"

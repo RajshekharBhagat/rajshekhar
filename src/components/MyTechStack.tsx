@@ -347,7 +347,7 @@ const MyTechStack = () => {
             <h1 className="text-4xl md:text-5xl lg:text-6xl tracking-tight font-semibold mt-3">
               My Tech Stack
             </h1>
-            <div className="md:mt-30 mt-10 max-w-4xl justify-center relative w-full mx-auto flex flex-wrap gap-2 md:gap-5">
+            <div className="md:mt-30 mt-10 max-w-4xl justify-center relative w-full mx-auto flex flex-wrap gap-3 md:gap-5">
       {techStacks.map((techstack, index) => (
         <MagneticContainer key={index}>
         <motion.div

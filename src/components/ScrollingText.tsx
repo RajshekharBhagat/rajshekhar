@@ -24,7 +24,7 @@ const ScrollingText = () => {
       <div className="absolute px-3 flex items-center inset-0 top-1/2 -translate-y-[50%] origin-center bg-gradient-to-r lg:rotate-3 rotate-6 shadow-lg shadow-black  from-blue-500 via-cyan-500 to-violet-500 h-[3rem] lg:h-[4rem]">
         <motion.div
           style={{ translateX: y1 }}
-          className="text-4xl whitespace-nowrap tracking-widest font-extrabold "
+          className="text-xl md:text-2xl lg:text-3xl whitespace-nowrap tracking-widest font-extrabold "
         >
           {text}
         </motion.div>
@@ -32,12 +32,12 @@ const ScrollingText = () => {
       <div className="absolute inset-0 top-1/2 px-3 flex items-center -translate-y-[50%] origin-center -z-10 lg:-rotate-3 -rotate-6 bg-gradient-to-r from-blue-500 via-cyan-500 to-violet-500 h-[3rem] lg:h-[4rem]">
         <motion.div
           style={{ translateX: y2 }}
-          className="text-4xl whitespace-nowrap tracking-widest font-extrabold"
+          className="text-xl md:text-2xl lg:text-3xl whitespace-nowrap tracking-widest font-extrabold"
         >
           {text}
         </motion.div>
       </div>
-      <div className="absolute inset-0 top-1/2 -translate-y-[50%] origin-center -z-10 -rotate-3 bg-black/50 h-[4rem]"></div>
+      <div className="absolute inset-0 top-1/2 -translate-y-[50%] origin-center -z-10 lg:-rotate-3 -rotate-6 bg-black/50 h-[4rem]"></div>
     </div>
   );
 };

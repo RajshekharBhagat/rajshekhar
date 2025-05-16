@@ -12,7 +12,6 @@ const ProjectCard = ({ projects }: ProjectCardProps) => {
   const control = useAnimation();
 
   const handleMouseEnter = () => {
-    console.log("mouse enter");
     control.start({ rotate: -5, scale:1.05 });
   };
   const handleMouseLeave = () => {
@@ -20,7 +19,7 @@ const ProjectCard = ({ projects }: ProjectCardProps) => {
   };
 
   return (
-    <div className="flex flex-col lg:flex-row overflow-y-auto">
+    <div className="flex flex-col lg:flex-row">
       <div className="h-full lg:w-[65%]">
         {projects.map((project, index) => (
           <div
@@ -80,8 +79,8 @@ const ProjectCard = ({ projects }: ProjectCardProps) => {
           </div>
         ))}
       </div>
-      <div className="relative hidden lg:block lg:w-[35%] p-2 h-[85vh]">
-          <div className="sticky top-0 border-8 border-zinc-800 rounded-xl h-full">
+      <div className="relative hidden lg:block lg:w-[35%] p-2">
+          <div className="sticky top-0 border-zinc-500 border-2 rounded-xl h-[84vh]">
             
           </div>
         </div>

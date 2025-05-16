@@ -50,10 +50,10 @@ const SearchBox = () => {
     <>
       <Button
         variant={"ghost"}
-        className="cursor-none"
+        className="cursor-none hover:bg-white/40 hover:text-white"
         onClick={() => setOpen(true)}
       >
-        <CommandIcon />
+        <CommandIcon className="size-5" />
       </Button>
       <div className="bg-black">
         <CommandDialog open={open} onOpenChange={setOpen}>

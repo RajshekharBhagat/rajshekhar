@@ -1,22 +1,27 @@
-'use client';
-import { motion } from 'framer-motion';
-import React from 'react';
+"use client";
+import { motion, AnimatePresence } from "framer-motion";
+import { usePathname } from "next/navigation";
+import { ReactNode } from "react";
 
-interface TransitionProps {
-    children: React.ReactNode;
-    className?: string;
-}
+const variants = {
+  initial: { opacity: 0, y: 30 },
+  animate: { opacity: 1, y: 0 },
+};
 
-const Transition = ({children , className} : TransitionProps) => {
+export default function Transition({ children }: { children: ReactNode }) {
+  const pathname = usePathname(); // To detect route changes
+
   return (
-    <motion.div className={className}
-        initial ={{y:20, opacity: 0}}
-        animate ={{y:0, opacity: 1}}
-        transition={{ease: 'easeInOut',duration: 0.75}}
-    >
+    <AnimatePresence>
+      <motion.div
+        key={pathname} // Important to trigger animation on route change
+        variants={variants}
+        initial="initial"
+        animate="animate"
+        transition={{ duration: 0.4, ease: "easeInOut" }}
+      >
         {children}
-    </motion.div>
-  )
+      </motion.div>
+    </AnimatePresence>
+  );
 }
-
-export default Transition

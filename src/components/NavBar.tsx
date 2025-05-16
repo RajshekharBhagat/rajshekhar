@@ -12,6 +12,8 @@ import React, {
 } from "react";
 import SearchBox from "./SearchBox";
 import ContactDrawer from "./ContactDrawer";
+import Link from "next/link";
+import Image from "next/image";
 
 const NavBar = () => {
   const navRef = useRef(null);
@@ -38,10 +40,12 @@ const NavBar = () => {
       initial="visible"
       transition={{ duration: 0.5, type: "spring" }}
       ref={navRef}
-      className="sticky z-[99] top-0 w-full h-14 backdrop-blur-sm"
+      className="fixed z-[99] top-0 w-full h-14 backdrop-blur-[1px] bg-gradient-to-b from-black/80 to-transparent"
     >
       <div className="max-w-[1500px] w-full mx-auto h-full px-3 lg:px-10 flex items-center justify-between">
-        <h1 className="text-white font-bold">RB</h1>
+        <Link href={'/'} className="relative h-6 w-6 aspect-square cursor-none">
+          <Image src={'/RBLogo.png'} alt="Logo Image" quality={100} fill  className="object-contain aspect-square bg-center" />
+        </Link>
         <SlideTab />
         <div>
           <SearchBox />
@@ -107,7 +111,7 @@ const SlideTab = () => {
   return (
     <ul
       ref={containerRef}
-      className="relative hidden md:flex w-fit overflow-clip justify-around rounded-full mx-auto border-2 border-zinc-400 p-1"
+      className="relative hidden md:flex w-fit overflow-clip justify-around bg-gradient-to-b from-white/10 via-transparent to-white/10 border-b-2 border-t-1 border-white/20 shadow-md shadow-black/30 rounded-full mx-auto p-1 transition-all duration-300"
     >
       {["Home", "Projects", "About", "Blog", "More"].map((tab, index) => (
         <Tab
@@ -205,7 +209,7 @@ const Tab = ({
       onMouseLeave={handleMouseLeave}
       onClick={handleClick}
       className={cn(
-        "relative uppercase z-10 px-3 py-1.5 text-sm text-white mix-blend-difference cursor-none",
+        "relative z-10 px-3 py-1 text-white cursor-none bg-blend-difference inline-block text-shadow-2xs text-shadow-black",
         className
       )}
     >
@@ -223,7 +227,7 @@ const Cursor = ({
     <motion.li
       animate={position}
       transition={{ type: "spring" }}
-      className="absolute h-8 rounded-full bg-white"
+      className="absolute h-8 rounded-full bg-white/20"
     ></motion.li>
   );
 };

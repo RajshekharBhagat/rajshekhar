@@ -12,15 +12,11 @@ const GetInTouch = () => {
   const [open, setOpen] = useState<boolean>(false);
   return (
     <div className="relative w-full h-full min-h-screen flex flex-col justify-center overflow-hidden items-center">
-      <div className="absolute inset-0 bg-black/40 -z-[9]" />
-      <div className="absolute inset-0 bg-gradient-to-r -z-[9] from-zinc-950 via-transparent to-zinc-950" />
-      <div className="absolute inset-0 bg-gradient-to-b -z-[9] from-zinc-950 via-transparent to-zinc-950" />
-      <Image
-        src={"/GetInTouchBG.jpg"}
-        alt="BackgroundImage"
-        fill
-        className="object-cover bg-center relative -z-10"
-      />
+      <div className="relative top-0 bg-gradient-to-t from-zinc-950 to-transparent rounded-full size-36">
+        <Image src={'/RBLogo.png'} alt={'LogoImage'} fill className="object-contain bg-center" />
+        <div className="absolute inset-0 bg-gradient-to-b from-zinc-950 via-transparent to-zinc-950" />
+        <div className="absolute inset-0 bg-gradient-to-r from-zinc-950 via-transparent to-zinc-950" />
+      </div>
       <motion.h1
         initial={{ opacity: 0, x: 100 }}
         whileInView={{ opacity: 1, x: 0 }}
