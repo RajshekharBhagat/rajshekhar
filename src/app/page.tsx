@@ -13,7 +13,7 @@ export default function Home() {
     <>
       <section
         id="hero"
-        className="relative min-h-screen w-full  flex flex-col items-center justify-start md:justify-center overflow-hidden"
+        className="relative min-h-screen w-full flex flex-col items-center justify-center overflow-hidden"
       >
         <FlickeringGrid
           className="absolute inset-0 h-full max-w-[1600px] mx-auto"
@@ -23,7 +23,8 @@ export default function Home() {
           maxOpacity={0.2}
           flickerChance={0.1}
         />
-        <MaxWidthWrapper className=" max-h-[40rem] h-full flex flex-col items-center justify-center">
+          <div className="text-xs relative text-zinc-400 mb-10 p-1 border-1 border-zinc-700 rounded-full">This site is under development </div>
+        <MaxWidthWrapper className="h-full flex flex-col items-center justify-center">
           <Hero />
         </MaxWidthWrapper>
       </section>
