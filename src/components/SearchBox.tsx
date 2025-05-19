@@ -55,10 +55,10 @@ const SearchBox = () => {
       >
         <CommandIcon className="size-5" />
       </Button>
-      <div className="bg-black">
+      <div className="cursor-none">
         <CommandDialog open={open} onOpenChange={setOpen}>
           <CommandInput placeholder="Type a command or search..." />
-          <CommandList className=" bg-black text-white scrollbar-hidden cursor-none">
+          <CommandList className=" bg-black text-white">
             <CommandEmpty>No results found.</CommandEmpty>
             <CommandGroup heading="Navigation">
               <Link href={"/"} onClick={() => setOpen(false)}>

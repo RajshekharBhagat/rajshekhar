@@ -11,11 +11,11 @@ import MagneticContainer from "./MagneticContainer";
 const GetInTouch = () => {
   const [open, setOpen] = useState<boolean>(false);
   return (
-    <div className="relative w-full h-full min-h-screen flex flex-col justify-center overflow-hidden items-center">
+    <div className="relative w-full  min-h-screen flex flex-col justify-center overflow-hidden items-center">
       <div className="relative top-0 bg-gradient-to-t from-zinc-950 to-transparent rounded-full size-36">
         <Image src={'/RBLogo.png'} alt={'LogoImage'} fill className="object-contain bg-center" />
-        <div className="absolute inset-0 bg-gradient-to-b from-zinc-950 via-transparent to-zinc-950" />
-        <div className="absolute inset-0 bg-gradient-to-r from-zinc-950 via-transparent to-zinc-950" />
+        <motion.div initial={{opacity:0}} whileInView={{opacity:1}} transition={{duration:0.75}} className="absolute inset-0 bg-gradient-to-b from-zinc-950/90 via-zinc-950/10 to-zinc-950/90" />
+        <motion.div initial={{opacity:0}} whileInView={{opacity:1}} transition={{duration:0.75}} className="absolute inset-0 bg-gradient-to-r from-zinc-950/90 via-zinc-950/10 to-zinc-950/90" />
       </div>
       <motion.h1
         initial={{ opacity: 0, x: 100 }}

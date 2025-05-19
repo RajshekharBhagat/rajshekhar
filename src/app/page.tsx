@@ -13,21 +13,21 @@ export default function Home() {
     <>
       <section
         id="hero"
-        className="relative w-full min-h-screen flex flex-col items-center justify-start md:justify-center overflow-hidden"
+        className="relative min-h-screen w-full  flex flex-col items-center justify-start md:justify-center overflow-hidden"
       >
         <FlickeringGrid
-          className="absolute inset-0 h-screen w-screen"
+          className="absolute inset-0 h-full max-w-[1600px] mx-auto"
           squareSize={7}
           gridGap={9}
           color="#6B7280"
           maxOpacity={0.2}
           flickerChance={0.1}
         />
-        <MaxWidthWrapper className="min-h-screen flex flex-col items-center justify-center">
+        <MaxWidthWrapper className=" max-h-[40rem] h-full flex flex-col items-center justify-center">
           <Hero />
         </MaxWidthWrapper>
       </section>
-      <section>
+      <section id="project">
         <Projects />
       </section>
       <section id='techStack' className="relative w-full min-h-screen overflow-hidden flex flex-col items-center justify-center">

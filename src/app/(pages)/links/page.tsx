@@ -72,7 +72,9 @@ const Page = () => {
     },
   ];
   return (
-    <WavyBackground className="relative w-full min-h-screen overflow">
+    <section className="relative w-full min-h-screen overflow">
+      
+      <WavyBackground backgroundFill="#09090b">
       <MaxWidthWrapper>
         <div className="h-full flex flex-col items-center">
           <div className="flex flex-col items-center py-3 max-w-md w-full mt-10 space-y-3">
@@ -82,7 +84,7 @@ const Page = () => {
             <h1 className="text-xl tracking-tighter font-semibold text-zinc-50">
               Rajshekhar Bhagat
             </h1>
-            <h1 className="text-zinc-400 text-sm lg:text-lg">
+            <h1 className="text-zinc-50 text-sm lg:text-lg">
               Fullstack Developer | IT Student | Problem Solver
             </h1>
             <div className="flex mt-5 items-center gap-6 justify-between">
@@ -98,7 +100,7 @@ const Page = () => {
                 <Link
                   className="cursor-none py-2 bg-zinc-900 rounded-full hover:scale-110 transition-all  border px-3"
                   href={"/"}
-                >
+                  >
                   rajbhagat27889@gmail.com
                 </Link>
               </MagneticContainer>
@@ -106,8 +108,8 @@ const Page = () => {
             <div className="mt-10 flex flex-col w-full space-y-5">
               {Links.map((link, index) => (
                 <div
-                  key={index}
-                  className="w-full hover:border-zinc-200 border-zinc-400 transition-all border py-3 px-3 mt-4 items-center gap-5 rounded-md flex bg-zinc-800/50"
+                key={index}
+                className="w-full hover:border-zinc-200 border-zinc-400 transition-all border py-3 px-3 mt-4 items-center gap-5 rounded-md flex bg-zinc-800/50"
                 >
                   {link.icon}
                   <Link
@@ -122,8 +124,9 @@ const Page = () => {
           </div>
         </div>
       </MaxWidthWrapper>
+      </WavyBackground>
       <GetInTouch />
-    </WavyBackground>
+    </section>
   );
 };
 

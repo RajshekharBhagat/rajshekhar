@@ -1,13 +1,14 @@
 import GetInTouch from "@/components/GetInTouch";
+import GuestBookForm from "@/components/GuestBookForm";
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import { AuroraText } from "@/components/magicui/aurora-text";
 import Image from "next/image";
-import React from "react";
 
 const page = () => {
   return (
-    <div className="relative min-h-screen w-full">
-      <div className="absolute inset-0 -z-10">
+    <>
+    <section className="relative min-h-screen w-full flex flex-col items-center mt-10 md:mt-18">
+      <div className="absolute inset-x-0 h-screen -z-10">
         <Image
           src="/black-background.jpg"
           alt="background image"
@@ -15,12 +16,13 @@ const page = () => {
           className="object-cover"
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
+        <div className="absolute inset-x-0 h-screen bg-gradient-to-r from-zinc-950 via-transparent to-zinc-950" />
+        <div className="absolute inset-x-0 h-screen bg-gradient-to-b from-zinc-950 via-transparent to-zinc-950" />
       </div>
-      <MaxWidthWrapper className="relative z-50">
-        <div className="flex flex-col max-w-md mx-auto w-full text-center items-center py-10">
+      <MaxWidthWrapper className="relative">
+        <div className="flex flex-col max-w-xl  mx-auto w-full text-center">
           <h1 className=" font-semibold text-zinc-400">THE GUESTBOOK</h1>
-          <AuroraText className="text-3xl md:text-5xl lg:text-7xl font-black">
+          <AuroraText className="text-3xl md:text-5xl lg:text-7xl font-black mt-4">
             Got a message?{"  "}
           </AuroraText>
           <h1 className="text-3xl text-center inline-block md:text-4xl lg:text-6xl font-medium">
@@ -30,10 +32,14 @@ const page = () => {
             Sign my guestbook and share your idea. You can tell me anything
             here!
           </p>
+          <GuestBookForm />
         </div>
       </MaxWidthWrapper>
+    </section>
+    <MaxWidthWrapper>
       <GetInTouch />
-    </div>
+    </MaxWidthWrapper>
+    </>
   );
 };
 

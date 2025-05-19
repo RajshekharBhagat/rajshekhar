@@ -2,16 +2,15 @@ import Footer from "@/components/Footer";
 import NavBar from "@/components/NavBar";
 import Transition from "@/components/Transition";
 import { SmoothCursor } from "@/components/ui/smooth-cursor";
+import AuthProvider from "@/context/AuthProvider";
+import { ReactLenis } from "@/lib/ReactLenis";
 import { cn } from "@/lib/utils";
 import { Oxanium } from "next/font/google";
 import "./globals.css";
-import {ReactLenis} from '@/lib/ReactLenis'
-import PreLoader from "@/components/PreLoader";
-
 
 const oxanium = Oxanium({
-  subsets:['latin-ext']
-})
+  subsets: ["latin-ext"],
+});
 
 export default function RootLayout({
   children,
@@ -21,22 +20,24 @@ export default function RootLayout({
   return (
     <html lang="en">
       <ReactLenis root>
-      <body
-        className={cn(
-          oxanium.className,
-          "relative bg-zinc-950 scroll-smooth text-white overflow-x-hidden min-h-screen h-full"
-        )}
-      >
-        <SmoothCursor />
-        <NavBar />
-        <main className="relative flex flex-col overflow-hidden min-h-[calc(100vh-3.5rem)]">
-          <PreLoader />
-          <Transition>
-            {children}
-          </Transition>
-        </main>
-          <Footer />
-      </body>
+        <body
+          className={cn(
+            oxanium.className,
+            "relative bg-zinc-950 text-white overflow-x-hidden min-h-screen h-full"
+          )}
+        >
+          {/* <PreLoader /> */}
+          <AuthProvider>
+            <SmoothCursor />
+            <NavBar />
+            <main className="relative flex flex-col overflow-hidden min-h-[calc(100vh-3.5rem)]">
+              <Transition>
+                {children}
+                <Footer />
+              </Transition>
+            </main>
+          </AuthProvider>
+        </body>
       </ReactLenis>
     </html>
   );

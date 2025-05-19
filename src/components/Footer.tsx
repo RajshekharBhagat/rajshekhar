@@ -5,7 +5,9 @@ import SocialIcons from "./SocialIcons";
 
 const Footer = () => {
   return (
-    <div className="border-t border-zinc-700 py-16 bg-zinc-950/15">
+    <>
+    <div className="w-full h-[2px] bg-gradient-to-r from-zinc-950 via-white to-zinc-950" />
+    <div className="py-16 bg-zinc-950/15">
       <MaxWidthWrapper className="grid md:grid-cols-[1.1fr_1.4fr_1.1fr] gap-8 md:gap-16">
         <div className="flex flex-col">
           <h1 className="text-2xl font-semibold">Rajshekhar Bhagat</h1>
@@ -23,7 +25,7 @@ const Footer = () => {
                 <Link
                   className="text-zinc-400 hover:text-zinc-200 transition-color cursor-none"
                   href="/"
-                >
+                  >
                   Home
                 </Link>
               </li>
@@ -31,7 +33,7 @@ const Footer = () => {
                 <Link
                   className="text-zinc-400 hover:text-zinc-200 transition-color cursor-none"
                   href="/projects"
-                >
+                  >
                   Projects
                 </Link>
               </li>
@@ -47,7 +49,7 @@ const Footer = () => {
                 <Link
                   className="text-zinc-400 hover:text-zinc-200 transition-color cursor-none"
                   href="/#about"
-                >
+                  >
                   About
                 </Link>
               </li>
@@ -84,7 +86,7 @@ const Footer = () => {
                 <Link
                   className="text-zinc-400 hover:text-zinc-200 transition-color cursor-none"
                   href="/cal"
-                >
+                  >
                   Book a call
                 </Link>
               </li>
@@ -117,13 +119,14 @@ const Footer = () => {
               target="_blank"
               rel="noopener noreferrer"
               className="hover:underline cursor-none"
-            >
+              >
               rajbhagat27889@gmail.com
             </Link>
           </p>
         </div>
       </MaxWidthWrapper>
     </div>
+              </>
   );
 };
 

@@ -6,42 +6,9 @@ import ProjectCard from "./ProjectCard";
 import { AuroraText } from "./magicui/aurora-text";
 import MaxWidthWrapper from "./MaxWidthWrapper";
 import Image from "next/image";
+import projectsData from "@/lib/data";
 
-const projects: ProjectType = [
-  {
-    id: 1,
-    title: "Ask-It",
-    description:
-      "A modern e-commerce platform with Stripe payments, product management, and user authentication. Built using Next.js, MongoDB, and Tailwind CSS.",
-    techStack: ["Next.js", "MongoDB", "Stripe", "Tailwind CSS"],
-    image: "/projects/ask-it.png",
-    liveLink: "https://ask-it-five.vercel.app",
-    githubLink: "https://github.com/RajshekharBhagat/Ask-It",
-    color: "blue",
-  },
-  {
-    id: 2,
-    title: "chatWave",
-    description:
-      "A Reddit clone for discussions and discoveries. Features voting, commenting, and real-time updates using Upstash Redis and NextAuth.",
-    techStack: ["Next.js", "Redis", "React Query", "NextAuth"],
-    image: "/projects/chatwave.png",
-    liveLink: "https://chat-wave-vert.vercel.app",
-    githubLink: "https://github.com/RajshekharBhagat/Chat-Wave",
-    color: "green",
-  },
-  {
-    id: 3,
-    title: "swiftDrop",
-    description:
-      "A logistics dashboard for managing delivery partners and order assignments with real-time updates and role-based access.",
-    techStack: ["React", "Node.js", "MongoDB", "ShadCN UI"],
-    image: "/projects/swiftdrop.png",
-    liveLink: "https://swift-drop-amber.vercel.app",
-    githubLink: "https://github.com/RajshekharBhagat/swiftDrop",
-    color: "red",
-  },
-];
+
 const Projects = () => {
   const [currentProjectIndex, setCurrentProjectIndex] = useState<number>(0);
   const projectRefs = useRef<(HTMLElement | null)[]>([]);
@@ -91,13 +58,13 @@ const Projects = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative w-full min-h-screen overflow-hidden">
-      <motion.div style={{rotate,scale}} className="absolute -top-20 inset-0 -z-10 h-screen">
+    <section ref={sectionRef} className="relative w-full h-full overflow-hidden">
+      <motion.div style={{rotate,scale}} className="absolute max-w-[1600px] w-full mx-auto h-screen -top-20 inset-0 -z-10">
         <Image
           src={"/projectsBG.jpg"}
           alt="Background Image"
           fill
-          className="object-cover"
+          className="object-cover  max-w-[1600px] mx-auto"
         />
         <div className="absolute inset-0 bg-black/40" />
         <div className="absolute inset-0 bg-gradient-to-r from-zinc-950 via-transparent to-zinc-950" />
@@ -114,7 +81,7 @@ const Projects = () => {
             <AuroraText>Passion</AuroraText>
           </h1>
         </div>
-        <ProjectCard projects={projects} />
+        <ProjectCard projects={projectsData} />
       </MaxWidthWrapper>
     </section>
   );

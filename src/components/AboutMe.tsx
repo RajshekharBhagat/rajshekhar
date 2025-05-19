@@ -12,8 +12,10 @@ const AboutMe = () => {
   const ref = useRef<HTMLDivElement | null>(null);
 
   const SpringOption = {
-    stiffness: 200,
-    damping: 25,
+    damping: 45,
+    stiffness: 400,
+    mass: 1,
+    restDelta: 0.001,
   }
 
   const position = {
@@ -27,11 +29,11 @@ const AboutMe = () => {
   const handleMouseMove = (e:React.MouseEvent) => {
     const rect = ref.current?.getBoundingClientRect();
     if(rect) {
-      position.x.set(e.clientX - rect.left);
-      position.y.set(e.clientY - rect.top);
+      position.x.set(e.clientX - rect.left - 24 );
+      position.y.set(e.clientY - rect.top +50);
     } else {
-      position.x.set(e.clientX);
-      position.y.set(e.clientY);
+      position.x.set(e.clientX - 24);
+      position.y.set(e.clientY + 10);
     }
     
   }

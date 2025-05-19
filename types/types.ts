@@ -7,4 +7,4 @@ export type ProjectType = {
     liveLink: string;
     githubLink: string;
     color: string;
-}[]
+}

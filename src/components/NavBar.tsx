@@ -106,7 +106,7 @@ const SlideTab = () => {
         opacity: 1,
       });
     }
-  }, [pathname && open]);
+  }, [pathname,activeTab]);
 
   return (
     <ul
