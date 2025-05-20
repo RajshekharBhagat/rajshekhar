@@ -7,6 +7,7 @@ import { ReactLenis } from "@/lib/ReactLenis";
 import { cn } from "@/lib/utils";
 import { Oxanium } from "next/font/google";
 import "./globals.css";
+import { Toaster } from "sonner";
 
 const oxanium = Oxanium({
   subsets: ["latin-ext"],
@@ -35,6 +36,7 @@ export default function RootLayout({
                 {children}
                 <Footer />
               </Transition>
+              <Toaster />
             </main>
           </AuthProvider>
         </body>
