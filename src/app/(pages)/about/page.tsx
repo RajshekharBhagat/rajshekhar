@@ -19,7 +19,7 @@ const Page = () => {
       >
         <MaxWidthWrapper>
           <div className="flex flex-col items-center lg:flex-row w-full">
-            <motion.div className=" max-w-xl w-full mx-auto lg:w-[60%] flex flex-col items-center justify-center">
+            <div className=" max-w-xl w-full mx-auto lg:w-[60%] flex flex-col items-center justify-center">
               <p className=" md:text-lg text-zinc-400 text-center">
                 MORE ABOUT ME
               </p>
@@ -41,7 +41,7 @@ const Page = () => {
                 a meaningful difference in the world around me.
               </p>
               <SocialIcons />
-            </motion.div>
+            </div>
             <div className="relative  lg:w-[40%] lg:h-screen lg:flex flex-col items-center justify-center hidden">
               <motion.div
                 animate={{

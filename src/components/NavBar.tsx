@@ -111,7 +111,7 @@ const SlideTab = () => {
   return (
     <ul
       ref={containerRef}
-      className="relative hidden md:flex w-fit overflow-clip justify-around bg-gradient-to-b from-white/10 via-transparent to-white/10 border-b-2 border-t-1 border-white/20 shadow-md shadow-black/30 rounded-full mx-auto p-1 transition-all duration-300"
+      className="relative hidden md:flex w-fit overflow-clip justify-around bg-gradient-to-b from-white/10 via-white/5 to-white/10 border-b-2 border-t-1 border-white/20 shadow-md shadow-black/30 rounded-full mx-auto p-1 transition-all duration-300"
     >
       {["Home", "Projects", "About", "Blog", "More"].map((tab, index) => (
         <Tab
@@ -227,7 +227,7 @@ const Cursor = ({
     <motion.li
       animate={position}
       transition={{ type: "spring" }}
-      className="absolute h-8 rounded-full bg-white/20"
+      className="absolute h-8 rounded-full bg-gradient-to-b from-white/5 via-white/0 to-white/5 shadow shadow-black border-t-1 border-t-white/10 border-b-2 border-b-white/20 bg-black/15"
     ></motion.li>
   );
 };

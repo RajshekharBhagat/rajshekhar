@@ -11,6 +11,23 @@ import { AuroraText } from "./magicui/aurora-text";
 const AboutMe = () => {
   const ref = useRef<HTMLDivElement | null>(null);
 
+  const TextVariants = {
+    hidden: {
+      opacity: 0,
+      scale:0.95,
+      x:-50,
+    },
+    visible: {
+      opacity:1,
+      scale:1,
+      x:0,
+      transition: {
+        type:'spring',
+        duration:0.75
+      }
+    }
+  }
+
   const SpringOption = {
     damping: 45,
     stiffness: 400,
@@ -54,17 +71,17 @@ const AboutMe = () => {
         <div className="grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-6 mb-10">
           <div className="max-w-3xl flex flex-col items-center lg:items-start justify-center w-full mx-auto">
             <motion.h1
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5 }}
+              variants={TextVariants}
+              initial="hidden"
+              whileInView="visible"
               className="text-sm font-semibold text-zinc-400"
             >
               KNOW ABOUT ME
             </motion.h1>
             <motion.h1
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5 }}
+              variants={TextVariants}
+              initial="hidden"
+              whileInView="visible"
               className="text-3xl md:text-3xl lg:text-4xl font-bold lg:text-left text-center mt-5"
             >
               Full Stack Developer building seamless experiences,{" "}
@@ -72,9 +89,9 @@ const AboutMe = () => {
               <AuroraText> back</AuroraText>.
             </motion.h1>
             <motion.p
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5 }}
+              variants={TextVariants}
+              initial="hidden"
+              whileInView="visible"
               className="mt-6 md:text-lg tracking-wide text-zinc-400 lg:text-left text-center"
             >
               I&apos;m Rajshekhar Bhagat, a passionate and curious Full Stack
@@ -85,18 +102,18 @@ const AboutMe = () => {
               developer.
             </motion.p>
             <motion.p
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5 }}
+              variants={TextVariants}
+              initial="hidden"
+              whileInView="visible"
               className="mt-6 md:text-lg text-zinc-400 tracking-wide text-center lg:text-left"
             >
               I wake up every day with a deep sense of purpose, eager to make a
               meaningful difference in the world around me.
             </motion.p>
             <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5 }}
+              variants={TextVariants}
+              initial="hidden"
+              whileInView="visible"
               className="flex gap-3 mt-10"
             >
               <Link
@@ -154,9 +171,9 @@ const AboutMe = () => {
               </Link>
             </motion.div>
             <motion.div
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
+              variants={TextVariants}
+              initial="hidden"
+              whileInView="visible"
               viewport={{ once: false }}
             >
               <Link

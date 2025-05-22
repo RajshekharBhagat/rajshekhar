@@ -3,13 +3,16 @@ import {
   motion,
   useAnimation,
   useMotionValue,
+  useScroll,
   useSpring,
+  useTransform,
 } from "framer-motion";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useRef, useState } from "react";
 import { ProjectType } from "../../types/types";
 import HoverView from "./HoverView";
+import { cn } from "@/lib/utils";
 
 interface ProjectCardProps {
   projects: ProjectType[];
@@ -17,6 +20,28 @@ interface ProjectCardProps {
 
 const ProjectCard = ({ projects }: ProjectCardProps) => {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
+  const containerRef = useRef(null);
+  const TextVariants = {
+    hidden: {
+      opacity: 0,
+      scale: 0.95,
+      x: -100,
+    },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      x: 0,
+      transition: {
+        type: "spring",
+        duration: 0.9,
+      },
+    },
+  };
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"],
+  });
+  const top = useTransform(scrollYProgress, [0, 1], ["2%", "72%"]);
   const refs = useRef<(HTMLDivElement | null)[]>([]);
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -29,7 +54,7 @@ const ProjectCard = ({ projects }: ProjectCardProps) => {
         });
       },
       {
-        threshold: 0.5,
+        threshold: 0.9,
       }
     );
     refs.current.forEach((ref) => {
@@ -42,8 +67,8 @@ const ProjectCard = ({ projects }: ProjectCardProps) => {
     };
   }, []);
   return (
-    <div className="flex flex-col lg:flex-row">
-      <div className="h-full space-y-24 lg:w-[65%]">
+    <div ref={containerRef} className="relative py-16 lg:flex">
+      <div className="flex flex-col h-full gap-y-6 md:gap-y-24 lg:max-w-[65%]">
         {projects.map((project, index) => (
           <Card
             key={project.id}
@@ -55,34 +80,62 @@ const ProjectCard = ({ projects }: ProjectCardProps) => {
           />
         ))}
       </div>
-      <div className="relative hidden lg:block lg:w-[35%] p-2">
-        <div className="sticky top-0 border-zinc-500 border-2 rounded-xl h-[35rem] p-4">
+      <div className="relative hidden lg:block lg:w-[35%] overflow-hidden">
+        <motion.div
+          style={{ top: top }}
+          className="absolute inset-0 h-[28%]"
+        >
           {projects[currentIndex] && (
             <motion.div
               key={currentIndex}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.3 }}
+              whileHover={{scale:1.02,x:5,}}
+              className="p-2"
             >
-              <h1 className="text-2xl font-bold">
+              <motion.h1
+                variants={TextVariants}
+                initial="hidden"
+                animate="visible"
+                className={cn(
+                  "text-3xl font-bold",
+                  projects[currentIndex].textColor
+                )}
+              >
                 {projects[currentIndex].title}
-              </h1>
-              <p className="text-zinc-300 mt-2">
+              </motion.h1>
+              <motion.p
+                variants={TextVariants}
+                initial="hidden"
+                animate="visible"
+                className={cn(
+                  "text-zinc-300 mt-2 tracking-tight",
+                  projects[currentIndex].smallTextColor
+                )}
+              >
                 {projects[currentIndex].description}
-              </p>
-              <div className="mt-4 flex flex-wrap gap-2">
+              </motion.p>
+              <div className={cn("mt-4 flex flex-wrap gap-2")}>
                 {projects[currentIndex].techStack.map((tech, idx) => (
-                  <span
+                  <motion.span
                     key={idx}
-                    className="bg-blue-500/30 text-blue-300 px-3 py-1 rounded text-sm"
+                    initial={{opacity:0,scale:0.5}}
+                    animate={{opacity:1,scale:1}}
+                    transition={{
+                      delay:idx*0.05,
+                      duration:0.3
+                    }}
+                    className={cn(
+                      "px-3 py-1 rounded-full text-sm",
+                      projects[currentIndex].bg_color,
+                      projects[currentIndex].smallTextColor
+                    )}
                   >
                     {tech}
-                  </span>
+                  </motion.span>
                 ))}
               </div>
             </motion.div>
           )}
-        </div>
+        </motion.div>
       </div>
     </div>
   );
@@ -152,7 +205,7 @@ const Card = React.forwardRef<
         onMouseLeave={handleCardMouseLeave}
         onMouseMove={handleCardMouseMove}
         onClick={() => router.push(`/projects/${project.id}`)}
-        className="relative  rounded-xl w-full h-full p-1"
+        className="relative rounded-xl w-full h-full p-1"
       >
         <HoverView isVisible={isVisible} position={smoothPosition} />
         <motion.div
@@ -163,17 +216,31 @@ const Card = React.forwardRef<
           }}
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
-          className={`relative bg-gradient-to-b from-blue-950 to-black aspect-video lg:aspect-[4/3] border-4 lg:border-8 border-zinc-900 ring-zinc-500 ring rounded-xl w-full overflow-clip`}
+          className={cn(
+            project.bg_from,
+            project.bg_to,
+            `relative bg-gradient-to-b aspect-video lg:aspect-[4/3] border-4 lg:border-8 border-zinc-900 ring-zinc-500 ring rounded-xl w-full overflow-clip`
+          )}
         >
           <div className=" p-4 hidden lg:block">
-            <h1 className="text-xl md:text-3xl lg:text-4xl font-semibold">
+            <h1 className="text-xl md:text-3xl lg:text-4xl font-bold">
               {project.title}
             </h1>
-            <p className="text-zinc-300">{project.description}</p>
+            <p
+              className={cn(
+                "tracking-tight text-sm mt-1",
+                project.smallTextColor
+              )}
+            >
+              {project.description}
+            </p>
           </div>
           <motion.div
             animate={control}
-            className="absolute left-1/2 -translate-x-1/2 lg:-bottom-10 -bottom-5 w-[90%] aspect-video shadow-blue-400 shadow-2xl rounded-t-lg overflow-hidden"
+            className={cn(
+              project.shadowColor,
+              "absolute left-1/2 -translate-x-1/2 lg:-bottom-10 -bottom-5 w-[90%] aspect-video shadow-2xl rounded-t-lg overflow-hidden"
+            )}
           >
             <Image
               src={project.image}
@@ -184,37 +251,42 @@ const Card = React.forwardRef<
             />
           </motion.div>
         </motion.div>
-        <div className="mt-5 px-2 lg:hidden overflow-hidden">
-          <div className="flex flex-col gap-2">
-            <motion.h1
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5 }}
-              className="font-bold text-lg"
-            >
-              {project.title}
-            </motion.h1>
-            <motion.p
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5 }}
-              className="text-sm text-zinc-400"
-            >
-              {project.description}
-            </motion.p>
-            <div className="flex flex-wrap gap-3 p-1">
-              {project.techStack.map((tech, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: -10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.09 }}
-                  className={`py-1 px-3 rounded-sm bg-blue-500/30 grid place-content-center`}
-                >
-                  <h1 className={`text-xs text-blue-300`}>{tech}</h1>
-                </motion.div>
-              ))}
-            </div>
+      </div>
+      <div className="mt-5 px-2 lg:hidden h-fit w-full">
+        <div className="flex flex-col gap-2">
+          <motion.h1
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
+            className={cn("font-bold text-lg", project.textColor)}
+          >
+            {project.title}
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
+            className={cn("text-sm", project.smallTextColor)}
+          >
+            {project.description}
+          </motion.p>
+          <div className="flex flex-wrap gap-3 p-1">
+            {project.techStack.map((tech, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: -10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.09 }}
+                className={cn(
+                  `py-1 px-3 rounded-sm grid place-content-center`,
+                  project.bg_color
+                )}
+              >
+                <h1 className={cn(`text-xs`, project.smallTextColor)}>
+                  {tech}
+                </h1>
+              </motion.div>
+            ))}
           </div>
         </div>
       </div>
@@ -222,6 +294,6 @@ const Card = React.forwardRef<
   );
 });
 
-Card.displayName = 'Card';
+Card.displayName = "Card";
 
 export default ProjectCard;

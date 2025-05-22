@@ -58,7 +58,7 @@ const GuestBookForm = () => {
       form.setValue('sender',session.user.id);
     }
   },[session])
-  if (!session) {
+  if (!session) { 
     return (
       <div className="flex flex-col w-full items-center mt-4 gap-2 ">
         <Button onClick={() => handleSigninClick()} className="active:scale-90">
