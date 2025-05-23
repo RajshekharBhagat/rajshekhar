@@ -1,47 +1,22 @@
 "use client";
+import { cn } from "@/lib/utils";
 import {
   motion,
   useAnimation,
   useMotionValue,
-  useScroll,
-  useSpring,
-  useTransform,
+  useSpring
 } from "framer-motion";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useRef, useState } from "react";
 import { ProjectType } from "../../types/types";
 import HoverView from "./HoverView";
-import { cn } from "@/lib/utils";
+import ProjectDetails from "./ProjectDetails";
+import { projectsData } from "@/lib/data";
 
-interface ProjectCardProps {
-  projects: ProjectType[];
-}
 
-const ProjectCard = ({ projects }: ProjectCardProps) => {
+const ProjectCard = () => {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
-  const containerRef = useRef(null);
-  const TextVariants = {
-    hidden: {
-      opacity: 0,
-      scale: 0.95,
-      x: -100,
-    },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      x: 0,
-      transition: {
-        type: "spring",
-        duration: 0.9,
-      },
-    },
-  };
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"],
-  });
-  const top = useTransform(scrollYProgress, [0, 1], ["2%", "72%"]);
   const refs = useRef<(HTMLDivElement | null)[]>([]);
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -54,7 +29,7 @@ const ProjectCard = ({ projects }: ProjectCardProps) => {
         });
       },
       {
-        threshold: 0.9,
+        threshold: 0.5,
       }
     );
     refs.current.forEach((ref) => {
@@ -67,9 +42,9 @@ const ProjectCard = ({ projects }: ProjectCardProps) => {
     };
   }, []);
   return (
-    <div ref={containerRef} className="relative py-16 lg:flex">
+    <div className="relative w-full lg:flex">
       <div className="flex flex-col h-full gap-y-6 md:gap-y-24 lg:max-w-[65%]">
-        {projects.map((project, index) => (
+        {projectsData.map((project, index) => (
           <Card
             key={project.id}
             project={project}
@@ -80,62 +55,12 @@ const ProjectCard = ({ projects }: ProjectCardProps) => {
           />
         ))}
       </div>
-      <div className="relative hidden lg:block lg:w-[35%] overflow-hidden">
-        <motion.div
-          style={{ top: top }}
-          className="absolute inset-0 h-[28%]"
-        >
-          {projects[currentIndex] && (
-            <motion.div
-              key={currentIndex}
-              whileHover={{scale:1.02,x:5,}}
-              className="p-2"
-            >
-              <motion.h1
-                variants={TextVariants}
-                initial="hidden"
-                animate="visible"
-                className={cn(
-                  "text-3xl font-bold",
-                  projects[currentIndex].textColor
-                )}
-              >
-                {projects[currentIndex].title}
-              </motion.h1>
-              <motion.p
-                variants={TextVariants}
-                initial="hidden"
-                animate="visible"
-                className={cn(
-                  "text-zinc-300 mt-2 tracking-tight",
-                  projects[currentIndex].smallTextColor
-                )}
-              >
-                {projects[currentIndex].description}
-              </motion.p>
-              <div className={cn("mt-4 flex flex-wrap gap-2")}>
-                {projects[currentIndex].techStack.map((tech, idx) => (
-                  <motion.span
-                    key={idx}
-                    initial={{opacity:0,scale:0.5}}
-                    animate={{opacity:1,scale:1}}
-                    transition={{
-                      delay:idx*0.05,
-                      duration:0.3
-                    }}
-                    className={cn(
-                      "px-3 py-1 rounded-full text-sm",
-                      projects[currentIndex].bg_color,
-                      projects[currentIndex].smallTextColor
-                    )}
-                  >
-                    {tech}
-                  </motion.span>
-                ))}
-              </div>
-            </motion.div>
+      <div className="hidden lg:block lg:w-[35%] py-5 px-2 overflow-x-clip">
+        <div className="sticky top-20 w-full h-[30rem]">
+          {projectsData[currentIndex] && (
+            <ProjectDetails project={projectsData[currentIndex]} />
           )}
-        </motion.div>
+        </div>
       </div>
     </div>
   );

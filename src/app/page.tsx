@@ -13,7 +13,7 @@ export default function Home() {
     <>
       <section
         id="hero"
-        className="relative min-h-screen w-full flex flex-col items-center justify-center overflow-hidden"
+        className="relative min-h-screen w-full flex flex-col items-center overflow-x-clip"
       >
         <FlickeringGrid
           className="absolute inset-0 h-full max-w-[1600px] mx-auto"
@@ -23,24 +23,26 @@ export default function Home() {
           maxOpacity={0.2}
           flickerChance={0.1}
         />
+        <MaxWidthWrapper className="h-full flex flex-col items-center justify-center mt-16 md:mt-20">
           <div className="text-xs relative text-zinc-400 mb-10 p-1 border-1 border-zinc-700 rounded-full">This site is under development </div>
-        <MaxWidthWrapper className="h-full flex flex-col items-center justify-center">
           <Hero />
         </MaxWidthWrapper>
       </section>
-      <section id="project">
+      <section id="project" className="relative w-full min-h-screen overflow-x-clip">
         <Projects />
       </section>
-      <section id='techStack' className="relative w-full min-h-screen overflow-hidden flex flex-col items-center justify-center">
+      <section id='techStack' className="relative w-full min-h-screen overflow-x-clip flex flex-col items-center justify-center">
         <MyTechStack />
       </section>
+      <section className="relative w-full h-full overflow-x-clip">
       <ScrollingText />
-      <section id="about" className="relative w-full min-h-screen overflow-hidden flex flex-col items-center justify-center">
+      </section>
+      <section id="about" className="relative w-full min-h-screen overflow-x-clip flex flex-col items-center justify-center">
         <AboutMe />
       </section>
       <section
         id="getInTouch"
-        className="relative flex flex-col items-center justify-center w-full min-h-screen"
+        className="relative flex flex-col items-center justify-center w-full min-h-screen overflow-x-clip"
       >
         <MaxWidthWrapper>
           <GetInTouch />

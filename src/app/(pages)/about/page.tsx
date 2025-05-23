@@ -17,7 +17,7 @@ const Page = () => {
         ref={sectionRef}
         className="w-full flex flex-col overflow-hidden antialiased"
       >
-        <MaxWidthWrapper>
+        <MaxWidthWrapper className=" mt-16 lg:mt-0">
           <div className="flex flex-col items-center lg:flex-row w-full">
             <div className=" max-w-xl w-full mx-auto lg:w-[60%] flex flex-col items-center justify-center">
               <p className=" md:text-lg text-zinc-400 text-center">

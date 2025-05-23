@@ -5,7 +5,7 @@ import { Icons } from '@/components/Icons';
 import MaxWidthWrapper from '@/components/MaxWidthWrapper';
 import TechnologyUsedCard from '@/components/TechnologyUsedCard';
 import { buttonVariants } from '@/components/ui/button';
-import projectsData from '@/lib/data';
+import {projectsData} from '@/lib/data';
 import { AnimatePresence, motion } from 'framer-motion';
 import { ArrowUpRightIcon, StarIcon, ZapIcon } from 'lucide-react';
 import Image from 'next/image';
@@ -44,7 +44,7 @@ const Page = ({params}:{params:Promise<{id:string}>}) => {
             <div className='flex items-center gap-2 justify-between flex-wrap'>
                 <h1 className={'text-3xl md:text-5xl lg:text-6xl font-semibold'}>{project.title}</h1>
                 <div className='flex items-center gap-3'>
-                    <Link href={project.githubLink} className={buttonVariants({variant:'ghost',className:'cursor-none'})}><Icons.Github size={20} /></Link>
+                    <Link href={project.githubLink} className={buttonVariants({variant:'ghost',className:'cursor-none'})}><Icons.Github className='size-6' /></Link>
                     <Link href={project.liveLink} className={buttonVariants({variant:'outline',className:'text-black cursor-none'})}>Visit<ArrowUpRightIcon /></Link>
                 </div>
             </div>

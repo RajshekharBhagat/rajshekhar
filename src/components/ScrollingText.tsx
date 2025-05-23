@@ -19,7 +19,7 @@ const ScrollingText = () => {
   return (
     <div
       ref={ref}
-      className="relative w-[120%] h-[15rem] -left-[10%] overflow-hidden"
+      className="relative w-[120%] h-[15rem] -left-[10%] overflow-x-clip"
     >
       <div className="absolute px-3 flex items-center inset-0 top-1/2 -translate-y-[50%] origin-center bg-gradient-to-r lg:rotate-3 rotate-6 shadow-lg shadow-black  from-blue-500 via-cyan-500 to-violet-500 h-[3rem] lg:h-[4rem]">
         <motion.div

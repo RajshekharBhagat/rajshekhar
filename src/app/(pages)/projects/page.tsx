@@ -3,7 +3,7 @@ import Projects from "@/components/Projects";
 
 const Page = () => {
   return (
-    <div>
+    <div className="mt-16 lg:mt-0">
       <Projects />
       <GetInTouch />
     </div>

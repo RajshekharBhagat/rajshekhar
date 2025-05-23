@@ -8,10 +8,22 @@ import { cn } from "@/lib/utils";
 import { Oxanium } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "sonner";
+import { Metadata } from "next";
 
 const oxanium = Oxanium({
   subsets: ["latin-ext"],
 });
+
+export const metadata:Metadata = {
+  title: 'Rajshekhar Bhagat Portfolio',
+  icons: '/RBLogo2.png',
+  authors:{
+    name: 'Rajshekhar Bhagat',
+    url: 'http://rajshekhardev.vercel.app'
+  }
+}
+
+
 
 export default function RootLayout({
   children,
@@ -24,18 +36,18 @@ export default function RootLayout({
         <body
           className={cn(
             oxanium.className,
-            "relative bg-zinc-950 text-white overflow-x-hidden min-h-screen h-full"
+            "relative bg-zinc-950 text-white min-h-screen h-full"
           )}
         >
           {/* <PreLoader /> */}
           <AuthProvider>
             <SmoothCursor />
             <NavBar />
-            <main className="relative flex flex-col overflow-hidden min-h-[calc(100vh-3.5rem)]">
+            <main className="relative flex flex-col min-h-[calc(100vh-3.5rem)]">
               <Transition>
                 {children}
-                <Footer />
               </Transition>
+              <Footer />
               <Toaster />
             </main>
           </AuthProvider>

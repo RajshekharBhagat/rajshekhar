@@ -2,7 +2,7 @@
 import { useDeleteMessage } from "@/hooks/useDeleteMessage";
 import { Message } from "@/models/Message.model";
 import { User } from "@/models/User.model";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { Trash2Icon } from "lucide-react";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
@@ -40,7 +40,7 @@ const MessageCard = ({ message, sender }: MessageCardProps) => {
       whileInView="visible"
       exit="exit"
       transition={{ duration: 0.3, ease: "easeInOut" }}
-      className="relative flex flex-col w-full h-full p-2 space-y-2 mt-4 rounded-md border-2 border-white/20"
+      className="relative flex flex-col w-full h-full p-2 space-y-2 mt-4 rounded-md border border-zinc-800 bg-black"
     >
       <div className="flex items-center gap-2">
         <div className="relative size-10 overflow-hidden">
@@ -57,7 +57,7 @@ const MessageCard = ({ message, sender }: MessageCardProps) => {
         </div>
       </div>
       <div className="flex flex-col w-full space-y-2">
-        <div className="border-1 border-white/40 p-2 rounded-md bg-zinc-900">
+        <div className="border border-zinc-900 p-2 rounded-md bg-zinc-950">
           <h1 className="text-sm text-left">{message.message}</h1>
         </div>
         {

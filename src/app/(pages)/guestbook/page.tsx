@@ -8,7 +8,7 @@ import Image from "next/image";
 const page = () => {
   return (
     <>
-    <section className="relative min-h-screen w-full flex flex-col items-center mt-10 md:mt-18">
+    <section className="relative min-h-screen w-full flex flex-col items-center overflow-x-clip">
       <div className="absolute inset-x-0 h-screen -z-10">
         <Image
           src="/black-background.jpg"
@@ -20,8 +20,8 @@ const page = () => {
         <div className="absolute inset-x-0 h-screen bg-gradient-to-r from-zinc-950 via-transparent to-zinc-950" />
         <div className="absolute inset-x-0 h-screen bg-gradient-to-b from-zinc-950 via-transparent to-zinc-950" />
       </div>
-      <MaxWidthWrapper className="relative">
-        <div className="flex flex-col max-w-xl space-y-4  mx-auto w-full text-center">
+      <MaxWidthWrapper className="relative w-full overflow-x-clip mt-20">
+        <div className="flex flex-col max-w-xl space-y-2  mx-auto w-full text-center">
           <h1 className=" font-semibold text-zinc-400">THE GUESTBOOK</h1>
           <AuroraText className="text-3xl md:text-5xl lg:text-7xl font-black mt-4">
             Got a message?{"  "}

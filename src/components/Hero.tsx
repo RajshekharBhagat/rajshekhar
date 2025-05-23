@@ -1,5 +1,5 @@
 'use client';
-import { Clipboard } from "lucide-react";
+import { Clipboard, MapPinIcon } from "lucide-react";
 import { useState } from "react";
 import { InteractiveHoverButton } from "./magicui/interactive-hover-button";
 import { FlipWords } from "./ui/flip-words";
@@ -28,12 +28,16 @@ const Hero = () => {
         <h1 className="md:text-5xl lg:text-6xl text-4xl font-semibold bg-gradient-to-b md:text-left from-white to-gray-400 bg-clip-text text-transparent text-center">
           Turning ideas into interactive, blazing-fast web experiences.
         </h1>
-        <div className="text-center mt-10 md:text-left text-2xl text-zinc-300">
+        <div className="text-center mt-4 md:text-left text-2xl text-zinc-300 flex flex-col md:flex-row">
           <span>I’m Rajshekhar a</span>
           <FlipWords
             className="text-zinc-300"
             words={text}
             />
+        </div>
+        <div className="flex items-center justify-center md:justify-start  mt-4 gap-2">
+          <MapPinIcon className="text-zinc-300 size-5" />
+          <h1 className="text-sm text-zinc-300">Mumbai, India</h1>
         </div>
       </div>
       <div className="relative hidden md:flex size-full items-center justify-center overflow-hidden">

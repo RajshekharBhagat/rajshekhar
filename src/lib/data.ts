@@ -19,15 +19,16 @@ import {
   UserCheck,
 } from "lucide-react";
 import { ProjectType } from "../../types/types";
+import {Icons} from '@/components/Icons'
 
-const projectsData: ProjectType[] = [
+export const projectsData: ProjectType[] = [
   {
     id: 1,
     title: "Chat Wave",
     description: `Chat_Wave is a modern, real-time chat application designed to deliver seamless messaging experiences. It supports one-on-one conversations with message persistence, friend request systems, user authentication, and dynamic real-time updates. Built with scalability and user experience in mind, Chat_Wave incorporates modern development best practices and robust architecture.`,
 
     techStack: [
-      "Next.js",
+      "NextJS",
       "TypeScript",
       "Tailwind CSS",
       "Redis",
@@ -355,4 +356,75 @@ const projectsData: ProjectType[] = [
   }
 ];
 
-export default projectsData;
+export const techStacks = [
+  {
+    icon: Icons.HTML,
+    title: "HTML",
+  },
+  {
+    icon: Icons.CSS,
+    title: "CSS",
+  },
+  {
+    icon: Icons.JavaScript,
+    title: "JavaScript",
+  },
+  {
+    icon: Icons.TypeScript,
+    title: "TypeScript",
+  },
+  {
+    icon: Icons.ReactJS,
+    title: "ReactJS",
+  },
+  {
+    icon: Icons.NextJS,
+    title: "NextJS",
+  },
+  {
+    icon: Icons.TailwindCSS,
+    title: "Tailwind CSS",
+  },
+  {
+    icon: Icons.FramerMotion,
+    title: "Framer Motion",
+  },
+  {
+    icon: Icons.Shadcn,
+    title: "Shadcn",
+  },
+  {
+    icon: Icons.NodeJS,
+    title: "NodeJS",
+  },
+  {
+    icon: Icons.ExpressJS,
+    title: "ExpressJS",
+  },
+  {
+    icon: Icons.MongoDB,
+    title: "MongoDB",
+  },
+  {
+    icon: Icons.Zod,
+    title: "Zod",
+  },
+  {
+    icon: Icons.GitHub,
+    title: "GitHub",
+  },
+  {
+    icon: Icons.Postman,
+    title: "Postman",
+  },
+  {
+    icon: Icons.Vercel,
+    title: "Vercel",
+  },
+  {
+    icon: Icons.Redux,
+    title: "Redux",
+  },
+];
+
+export const techStackMap = Object.fromEntries(techStacks.map((item) => [item.title, item.icon]))

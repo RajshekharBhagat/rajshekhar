@@ -11,8 +11,8 @@ import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { z } from "zod";
 import { Button } from "./ui/button";
-import { Form, FormControl, FormDescription, FormField, FormItem, FormMessage } from "./ui/form";
-import { Input } from "./ui/input";
+import { Form, FormControl, FormField, FormItem, FormMessage } from "./ui/form";
+import { Textarea } from "./ui/textarea";
 
 
 const GuestBookForm = () => {
@@ -69,7 +69,7 @@ const GuestBookForm = () => {
     );
   }
   return (
-    <div className="flex flex-col w-full items-center p-1 rounded-xl backdrop-blur-xs border-2 border-white/20 mt-5 gap-3">
+    <div className="flex flex-col w-full items-center p-2 rounded-xl backdrop-blur-xs border-2 border-zinc-800 bg-black mt-5 gap-3">
       <div className="flex items-center w-full justify-between">
         <div className="flex items-center gap-2">
 
@@ -86,7 +86,7 @@ const GuestBookForm = () => {
             {session.user.name}
           </h1>
           <p className="text-xs tracking-tight text-zinc-400">
-            {session.user.id}
+            {session.user.email}
           </p>
         </div>
         </div>
@@ -98,17 +98,16 @@ const GuestBookForm = () => {
           <LogOutIcon />
         </Button>
       </div>
-      <div className="w-full h-full p-1 border-1 border-white/10 rounded-md">
+      <div className="w-full h-full rounded-md">
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="h-full w-full flex flex-col space-y-5">
-            <FormDescription>Send me a message</FormDescription>
             <FormField
               name="message"
               control={form.control}
               render={({field}) => (
                 <FormItem>
                   <FormControl>
-                  <Input className="border-white/20" {...field} placeholder="message" />
+                  <Textarea className="ring ring-zinc-900 bg-zinc-950 rounded-md p-2" {...field} placeholder="send me a message" />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

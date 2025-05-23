@@ -1,5 +1,4 @@
 "use client";
-import projectsData from "@/lib/data";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 import { useRef } from "react";
@@ -10,7 +9,6 @@ import { AuroraText } from "./magicui/aurora-text";
 
 const Projects = () => {
   const sectionRef = useRef(null);
-
   const {scrollYProgress} = useScroll({
     target: sectionRef,
     offset:['start end','40% start']
@@ -20,7 +18,7 @@ const Projects = () => {
   const scale = useTransform(scrollYProgress,[0,1],[0.5,1.5])
 
   return (
-    <section ref={sectionRef} className="relative w-full h-full">
+    <section ref={sectionRef} className="relative w-full h-full overflow-x-clip">
       <motion.div style={{rotate,scale}} className="absolute max-w-2xl aspect-square w-full mx-auto -top-20 inset-0 -z-10">
         <Image
           src={"/projectsBG.jpg"}
@@ -42,7 +40,7 @@ const Projects = () => {
             <AuroraText>Passion</AuroraText>
           </h1>
         </div>
-        <ProjectCard projects={projectsData} />
+        <ProjectCard />
       </MaxWidthWrapper>
     </section>
   );

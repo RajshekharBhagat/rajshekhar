@@ -88,7 +88,7 @@ const SlideTab = () => {
       case "/contact":
         return "Book a Call";
       default:
-        return "Home";
+        return "More";
     }
   };
 

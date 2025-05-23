@@ -23,10 +23,10 @@ const HoverView = ({isVisible,position}:HoverViewProps) => {
           <motion.div
             animate={{ scale: isVisible ? 1 : 0, opacity: isVisible ? 1 : 0 }}
             transition={{ type: "spring", delay:0.2 }}
-            className="relative size-[55%] rounded-full border-white/20 border-2 flex flex-col items-center justify-center"
+            className="relative size-[55%] rounded-full bg-white/30 flex flex-col items-center justify-center"
           >
             <SpinningText className='absolute text-xs tracking-wide'>View Details &bull; View Details &bull;</SpinningText>
-            <EyeIcon className="text-white/50 size-[60%]" />
+            <EyeIcon className="text-white/90 size-[60%]" />
           </motion.div>
         </motion.div>
   )
