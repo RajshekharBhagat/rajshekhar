@@ -2,6 +2,7 @@ import {NextAuthOptions} from 'next-auth';
 import {MongoDBAdapter} from '@auth/mongodb-adapter'
 import clientPromise from '@/lib/mongoDB_Client';
 import GoogleProvider from 'next-auth/providers/google'
+import GitHubProvider from 'next-auth/providers/github'
 
 function getGoogleCredentials() {
     const clientID = process.env.GOOGLE_CLIENT_ID;
@@ -16,12 +17,28 @@ function getGoogleCredentials() {
     return {clientID,clientSecrete}
 }
 
+function getGitHubCredentials() {
+    const clientID = process.env.GITHUB_CLIENT_ID;
+    const clientSecret = process.env.GITHUB_CLIENT_SECRET;
+    if(!clientID || clientID.length === 0) {
+        throw new Error('Missing GITHUB_CLIENT_ID');
+    }
+    if(!clientSecret || clientSecret.length === 0) {
+        throw new Error('Missing GOOGLE_CLIENT_SECRET');
+    }
+    return {clientID,clientSecret}
+}
+
 export const authOptions: NextAuthOptions = {
     adapter: MongoDBAdapter(clientPromise),
     providers: [
         GoogleProvider({
             clientId: getGoogleCredentials().clientID,
             clientSecret: getGoogleCredentials().clientSecrete,
+        }),
+        GitHubProvider({
+            clientId: getGitHubCredentials().clientID,
+            clientSecret: getGitHubCredentials().clientSecret
         })
     ],
     session: {

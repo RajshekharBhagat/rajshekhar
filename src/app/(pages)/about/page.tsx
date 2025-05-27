@@ -1,115 +1,74 @@
 "use client";
 import AboutTimeline from "@/components/AboutTimeline";
 import GetInTouch from "@/components/GetInTouch";
+import MainHeadingText from "@/components/MainHeadingText";
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import SocialIcons from "@/components/SocialIcons";
 import { AuroraText } from "@/components/magicui/aurora-text";
 import { SparklesCore } from "@/components/ui/sparkles";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { useRef } from "react";
-const Page = () => {
-  const sectionRef = useRef(null);
 
+const Page = () => {
+  const TextVariants = {
+    hidden: {
+      opacity: 0,
+      scale:0.95,
+      x:-50,
+    },
+    visible: {
+      opacity:1,
+      scale:1,
+      x:0,
+      transition: {
+        type:'spring',
+        duration:0.75
+      }
+    }
+  }
   return (
     <>
       <section
-        ref={sectionRef}
-        className="w-full flex flex-col overflow-hidden antialiased"
+        className=" relative w-full flex flex-col overflow-x-clip antialiased"
       >
-        <MaxWidthWrapper className=" mt-16 lg:mt-0">
+        <MaxWidthWrapper className="mt-20">
           <div className="flex flex-col items-center lg:flex-row w-full">
-            <div className=" max-w-xl w-full mx-auto lg:w-[60%] flex flex-col items-center justify-center">
-              <p className=" md:text-lg text-zinc-400 text-center">
+            <div className="lg:w-[60%] max-w-md lg:max-w-xl mx-auto flex flex-col items-center lg:items-start">
+            <motion.p variants={TextVariants} initial="hidden" whileInView="visible" className="text-sm font-semibold text-zinc-500">
                 MORE ABOUT ME
-              </p>
-              <h1 className="text-4xl w-full md:text-4xl lg:text-6xl font-semibold text-zinc-100 text-center lg:text-left mt-3 md:mt-6">
-                <p>Hi There!</p>
+              </motion.p>
+              <MainHeadingText className="text-4xl w-full md:text-4xl lg:text-6xl font-semibold text-zinc-100 text-center lg:text-left mt-3 md:mt-6">
+                <motion.p variants={TextVariants} initial="hidden" whileInView="visible">Hi There!</motion.p>
+                <motion.p variants={TextVariants} initial="hidden" whileInView="visible">
                 I&apos;m{" "}
                 <AuroraText className="font-extrabold">Rajshekhar</AuroraText>
-              </h1>
-              <p className="mt-3 md:mt-6 lg:text-xl md:text-lg text-zinc-400 text-center lg:text-left">
+                </motion.p>
+              </MainHeadingText>
+              <motion.p variants={TextVariants} initial="hidden" whileInView="visible" className="mt-3 md:mt-6 lg:text-xl md:text-lg text-zinc-400 text-center lg:text-left">
                 I&apos;m a passionate and curious Full Stack Developer with a
                 love for building intuitive, fast, and scalable web
                 applications. From backend logic to sleek UI, I enjoy crafting
                 complete solutions that solve real-world problems. I&apos;m
                 always exploring new technologies and pushing my limits to grow
                 as a developer.
-              </p>
-              <p className="mt-3 md:mt-6 lg:text-xl md:text-lg text-center lg:text-left text-zinc-400 mb-5">
+              </motion.p>
+              <motion.p variants={TextVariants} initial="hidden" whileInView="visible" className="mt-3 md:mt-6 lg:text-xl md:text-lg text-center lg:text-left text-zinc-400 mb-5">
                 I wake up every day with a deep sense of purpose, eager to make
                 a meaningful difference in the world around me.
-              </p>
+              </motion.p>
               <SocialIcons />
             </div>
-            <div className="relative  lg:w-[40%] lg:h-screen lg:flex flex-col items-center justify-center hidden">
-              <motion.div
-                animate={{
-                  y: [
-                    -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 4, 3, 2, 1, 0, -1, -2,
-                    -3, -4, -5,
-                  ],
-                }}
-                transition={{
-                  repeat: Infinity,
-                  duration: 3,
-                }}
-                className="relative shadow-2xl shadow-zinc-500 w-[60%] h-[70%]  rounded-4xl overflow-clip"
-              >
-                <motion.div
-                  style={{ opacity: 0 }}
-                  className="absolute inset-0 bg-black flex z-10 flex-col items-center justify-center text-9xl"
-                >
-                  RB
-                </motion.div>
-                <Image
-                  src={"/profilePicture.png"}
-                  alt="Profile Picture"
-                  fill
-                  className="object-cover bg-scroll shrink-0 pointer-events-none"
-                />
-              </motion.div>
-              {/* <FreeDisc /> */}
-            </div>
-            <div className="lg:hidden block">
-            {/* <DraggableProfile /> */}
-            </div>
-            {/* <div className="lg:hidden flex flex-col items-center justify-center h-[30rem] w-full max-w-[30rem]" >
-            <motion.div
-                animate={{
-                  y: [
-                    -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 4, 3, 2, 1, 0, -1, -2,
-                    -3, -4, -5,
-                  ],
-                }}
-                transition={{
-                  repeat: Infinity,
-                  duration: 3,
-                }}
-                className="relative shadow-2xl shadow-zinc-500 w-[60%] h-[80%]  rounded-4xl overflow-clip"
-              >
-                <motion.div
-                  style={{ opacity: 0 }}
-                  className="absolute inset-0 bg-black flex z-10 flex-col items-center justify-center text-9xl"
-                >
-                  RB
-                </motion.div>
-                <Image
-                  src={"/profilePicture.png"}
-                  alt="Profile Picture"
-                  fill
-                  className="object-cover bg-scroll shrink-0 pointer-events-none"
-                />
-              </motion.div>
-            </div> */}
+            <motion.div className="hidden relative lg:flex flex-col items-center justify-center w-[25%] mx-auto aspect-[239/261] shadow-xl shadow-white/30 rounded-xl overflow-clip">
+              <Image draggable="false" src={'/profilePicture2.png'} alt="Profile Picture" quality={100} fill className="object-cover bg-center" />
+            </motion.div>
           </div>
-          <div className="md:h-[30rem] h-[20rem] -mb-20 w-full bg-zinc-950 flex flex-col items-center overflow-hidden rounded-md md:mt-30">
-            <h1 className=" font-extrabold text-zinc-400">THE EXPERIENCE</h1>
-            <h1 className="text-3xl md:text-5xl lg:text-6xl max-w-md  font-semibold text-center relative z-10 mt-3 md:mt-6">
+          <div className="h-[20rem] w-full bg-zinc-950 flex flex-col items-center overflow-clip rounded-md mt-24">
+            <h1 className="text-sm md:text-lg font-semibold text-zinc-500">THE EXPERIENCE</h1>
+            <MainHeadingText className="text-3xl md:text-5xl lg:text-6xl max-w-xl w-full mx-auto  font-semibold text-center relative z-10 mt-3 md:mt-6">
               Breathing Life into{" "}
               <AuroraText className="font-extrabold">Code</AuroraText> and{" "}
               <AuroraText className="font-extrabold">Concepts</AuroraText>
-            </h1>
+            </MainHeadingText>
             <div className="w-[40rem] h-40 relative">
               <div className="absolute inset-x-20 top-0 bg-gradient-to-r from-transparent via-indigo-500 to-transparent h-[2px] w-3/4 blur-sm" />
               <div className="absolute inset-x-20 top-0 bg-gradient-to-r from-transparent via-indigo-500 to-transparent h-px w-3/4" />
@@ -129,7 +88,7 @@ const Page = () => {
           <div></div>
         </MaxWidthWrapper>
       </section>
-      <section className="relative w-full min-h-screen">
+      <section className="relative w-full min-h-screen ">
         <AboutTimeline />
         <GetInTouch />
       </section>

@@ -6,21 +6,22 @@ import axios from 'axios';
 import { LogOutIcon } from "lucide-react";
 import { signIn, signOut, useSession } from "next-auth/react";
 import Image from "next/image";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { z } from "zod";
 import { Button } from "./ui/button";
 import { Form, FormControl, FormField, FormItem, FormMessage } from "./ui/form";
 import { Textarea } from "./ui/textarea";
+import LoginModal from "./LoginModal";
+import { ShimmerButton } from "./magicui/shimmer-button";
 
 
 const GuestBookForm = () => {
   const { data: session } = useSession();
+  const [isOpen,setIsOpen] = useState<boolean>(false);
   const queryClient = useQueryClient();
-  const handleSigninClick = async () => {
-    await signIn("google");
-  };
+  
   const handleSignOutClick = async () => {
     await signOut();
   };
@@ -33,7 +34,7 @@ const GuestBookForm = () => {
     }
   })
 
-  const {mutate: sendMessage} = useMutation({
+  const {mutate: sendMessage,isPending} = useMutation({
     mutationFn: async(payload:formData) => {
       if(!payload) return;
       const {data: response} = await axios.post('/api/guestbook',payload);
@@ -57,22 +58,22 @@ const GuestBookForm = () => {
     if(session?.user.id) {
       form.setValue('sender',session.user.id);
     }
-  },[session])
+  },[session,form])
   if (!session) { 
     return (
       <div className="flex flex-col w-full items-center mt-4 gap-2 ">
-        <Button onClick={() => handleSigninClick()} className="active:scale-90">
-          Login
-        </Button>
+        <LoginModal isOpen={isOpen} setIsOpen={setIsOpen}>
+          <ShimmerButton className=" py-2" onClick={() => setIsOpen(true)}>Login</ShimmerButton>
+        </LoginModal>
         <p>Please Login to send me message.</p>
       </div>
+
     );
   }
   return (
     <div className="flex flex-col w-full items-center p-2 rounded-xl backdrop-blur-xs border-2 border-zinc-800 bg-black mt-5 gap-3">
       <div className="flex items-center w-full justify-between">
         <div className="flex items-center gap-2">
-
         <div className="relative size-10 overflow-hidden">
           <Image
             src={session.user.image}
@@ -107,14 +108,14 @@ const GuestBookForm = () => {
               render={({field}) => (
                 <FormItem>
                   <FormControl>
-                  <Textarea className="ring ring-zinc-900 bg-zinc-950 rounded-md p-2" {...field} placeholder="send me a message" />
+                  <Textarea className="border-zinc-900 active:ring-1  rounded-md p-2" {...field} placeholder="send me a message" />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
             <div className="flex items-center justify-end">
-              <Button type="submit">Send</Button>
+              <Button disabled={isPending} type="submit">Send</Button>
             </div>
           </form>
         </Form>

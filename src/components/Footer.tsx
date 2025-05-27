@@ -7,7 +7,7 @@ const Footer = () => {
   return (
     <>
     <div className="w-full h-[2px] bg-gradient-to-r from-zinc-950 via-white to-zinc-950" />
-    <div className="py-16 bg-zinc-950/15">
+    <div className="py-12 bg-zinc-950/15">
       <MaxWidthWrapper className="grid md:grid-cols-[1.1fr_1.4fr_1.1fr] gap-8 md:gap-16">
         <div className="flex flex-col">
           <h1 className="text-2xl font-semibold">Rajshekhar Bhagat</h1>

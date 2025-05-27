@@ -40,7 +40,7 @@ const NavBar = () => {
       initial="visible"
       transition={{ duration: 0.5, type: "spring" }}
       ref={navRef}
-      className="fixed z-[99] top-0 w-full h-14 backdrop-blur-[1px] bg-gradient-to-b from-black/80 to-transparent"
+      className="fixed z-50 top-0 w-full h-14 backdrop-blur-[1px] bg-gradient-to-b from-black/80 to-transparent"
     >
       <div className="max-w-[1500px] w-full mx-auto h-full px-3 lg:px-10 flex items-center justify-between">
         <Link href={'/'} className="relative h-6 w-6 aspect-square cursor-none">

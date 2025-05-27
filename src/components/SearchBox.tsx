@@ -15,7 +15,7 @@ import {
   LinkIcon,
   LogInIcon,
   Minimize2Icon,
-  UserIcon
+  UserIcon,
 } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -30,12 +30,23 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-  CommandSeparator
+  CommandSeparator,
 } from "./ui/command";
+import { signOut, useSession } from "next-auth/react";
+import LoginModal from "./LoginModal";
 
 const SearchBox = () => {
   const router = useRouter();
   const [open, setOpen] = useState<boolean>(false);
+  const [isLoginOpen, setIsLoginOpen] = useState<boolean>(false);
+  const [isLoading,setIsLoading] = useState<boolean>(false);
+  const { data: session } = useSession();
+  const handleSignOut = async() => {
+    setIsLoading(true);
+    await signOut();
+    setIsLoading(false);
+    setOpen(false);
+  }
   useEffect(() => {
     const down = (e: KeyboardEvent) => {
       if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
@@ -57,7 +68,7 @@ const SearchBox = () => {
       </Button>
       <div className="cursor-none">
         <CommandDialog open={open} onOpenChange={setOpen}>
-          <CommandInput placeholder="Type a command or search..." />
+          <CommandInput placeholder="search.." />
           <CommandList className=" bg-black text-white">
             <CommandEmpty>No results found.</CommandEmpty>
             <CommandGroup heading="Navigation">
@@ -148,17 +159,29 @@ const SearchBox = () => {
             </CommandGroup>
             <CommandSeparator />
             <CommandGroup heading="Account">
-              <Link href={"/"} onClick={() => setOpen(false)}>
-                <CommandItem className="flex items-center gap-4">
+              {session?.user ? (
+                <Link href={"/"} onClick={() => handleSignOut()}>
+                  <CommandItem className="flex items-center gap-4">
+                    <LogInIcon className="size-full" />
+                    <div className="flex flex-col">
+                      <h1 className="text-sm">Sign-out</h1>
+                      <p className="text-xs text-zinc-400">
+                        Welcome to my forever work-in-progress!
+                      </p>
+                    </div>
+                  </CommandItem>
+                </Link>
+              ) : (
+                <CommandItem>
                   <LogInIcon className="size-full" />
-                  <div className="flex flex-col">
-                    <h1 className="text-sm">Sign-in</h1>
-                    <p className="text-xs text-zinc-400">
-                      Welcome to my forever work-in-progress!
-                    </p>
-                  </div>
+                    <div className="flex flex-col">
+                      <h1 className="text-sm">Sign-out</h1>
+                      <p className="text-xs text-zinc-400">
+                        Welcome to my forever work-in-progress!
+                      </p>
+                    </div>
                 </CommandItem>
-              </Link>
+              )}
             </CommandGroup>
             <CommandSeparator />
             <CommandGroup heading="Resources">
@@ -174,7 +197,10 @@ const SearchBox = () => {
             </CommandGroup>
             <CommandSeparator />
             <CommandGroup heading="Social">
-              <Link href={"https://github.com/RajshekharBhagat"} onClick={() => setOpen(false)}>
+              <Link
+                href={"https://github.com/RajshekharBhagat"}
+                onClick={() => setOpen(false)}
+              >
                 <CommandItem className="flex items-center gap-4">
                   <Icons.Github />
                   <div className="flex flex-col">
@@ -185,7 +211,10 @@ const SearchBox = () => {
                   </div>
                 </CommandItem>
               </Link>
-              <Link href={"https://www.linkedin.com/in/rajshekhar-bhagat-291425242"} onClick={() => setOpen(false)}>
+              <Link
+                href={"https://www.linkedin.com/in/rajshekhar-bhagat-291425242"}
+                onClick={() => setOpen(false)}
+              >
                 <CommandItem className="flex items-center gap-4">
                   <Icons.LinkedIn />
                   <div className="flex flex-col">
@@ -196,7 +225,10 @@ const SearchBox = () => {
                   </div>
                 </CommandItem>
               </Link>
-              <Link href={"https://www.instagram.com/_._r__a__j__"} onClick={() => setOpen(false)}>
+              <Link
+                href={"https://www.instagram.com/_._r__a__j__"}
+                onClick={() => setOpen(false)}
+              >
                 <CommandItem className="flex items-center gap-4">
                   <Icons.Instagram />
                   <div className="flex flex-col">
@@ -207,14 +239,15 @@ const SearchBox = () => {
                   </div>
                 </CommandItem>
               </Link>
-              <Link href={"https://x.com/RajBhag44561162"} onClick={() => setOpen(false)}>
+              <Link
+                href={"https://x.com/RajBhag44561162"}
+                onClick={() => setOpen(false)}
+              >
                 <CommandItem className="flex items-center gap-4">
-                  <Icons.TwitterX/>
+                  <Icons.TwitterX />
                   <div className="flex flex-col">
                     <h1 className="text-sm">X</h1>
-                    <p className="text-xs text-zinc-400">
-                      View my X profile
-                    </p>
+                    <p className="text-xs text-zinc-400">View my X profile</p>
                   </div>
                 </CommandItem>
               </Link>
@@ -224,16 +257,16 @@ const SearchBox = () => {
             <SocialIcons />
             <div className="flex items-center gap-1">
               <div className="flex items-center gap-1">
-              <ArrowUp className=" p-1 bg-zinc-800 rounded-sm" />
-              <ArrowDown className=" p-1 bg-zinc-800 rounded-sm" />
-              <span className="text-xs text-zinc-600">navigate</span>
+                <ArrowUp className=" p-1 bg-zinc-800 rounded-sm" />
+                <ArrowDown className=" p-1 bg-zinc-800 rounded-sm" />
+                <span className="text-xs text-zinc-600">navigate</span>
               </div>
               <Dot className="text-zinc-600 md:block hidden" />
               <div className="md:flex hidden items-center gap-1">
                 <CornerDownLeftIcon className=" p-1 bg-zinc-800 rounded-sm" />
                 <span className="text-xs text-zinc-600">Select</span>
               </div>
-              <Dot className="text-zinc-600 md:block hidden"/>
+              <Dot className="text-zinc-600 md:block hidden" />
               <div className="md:flex hidden items-center gap-1">
                 <Minimize2Icon className=" p-1 bg-zinc-800 rounded-sm" />
                 <span className="text-xs text-zinc-600">esc</span>

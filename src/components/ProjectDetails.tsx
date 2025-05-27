@@ -20,7 +20,7 @@ const ProjectDetails = ({ project }: Props) => {
       x: 0,
       transition: {
         type: "spring",
-        duration: 0.1,
+        duration: 0.5,
       },
     },
   };

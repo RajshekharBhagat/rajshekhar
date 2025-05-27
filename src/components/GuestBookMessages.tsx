@@ -28,7 +28,7 @@ const GuestBookMessages = () => {
     );
   }
   return (
-    <div className="min-h-screen w-full">
+    <div className="relative h-full w-full">
       <div className="flex flex-col space-y-3">
         {messages.map((message) => {
           const sender = message.sender as User;

@@ -13,6 +13,7 @@ import { ProjectType } from "../../types/types";
 import HoverView from "./HoverView";
 import ProjectDetails from "./ProjectDetails";
 import { projectsData } from "@/lib/data";
+import MainHeadingText from "./MainHeadingText";
 
 
 const ProjectCard = () => {
@@ -58,7 +59,7 @@ const ProjectCard = () => {
       <div className="hidden lg:block lg:w-[35%] py-5 px-2 overflow-x-clip">
         <div className="sticky top-20 w-full h-[30rem]">
           {projectsData[currentIndex] && (
-            <ProjectDetails project={projectsData[currentIndex]} />
+            <ProjectDetails key={projectsData[currentIndex].id} project={projectsData[currentIndex]} />
           )}
         </div>
       </div>
@@ -91,6 +92,22 @@ const Card = React.forwardRef<
       restDelta: 0.001,
     }),
   };
+  const TextVariants = {
+    hidden: {
+      opacity: 0,
+      scale:0.95,
+      y:-50,
+    },
+    visible: {
+      opacity:1,
+      scale:1,
+      y:0,
+      transition: {
+        type:'spring',
+        duration:0.75
+      }
+    }
+  }
   const control = useAnimation();
   const handleMouseEnter = () => {
     control.start({ rotate: -5, scale: 1.05 });
@@ -147,10 +164,10 @@ const Card = React.forwardRef<
             `relative bg-gradient-to-b aspect-video lg:aspect-[4/3] border-4 lg:border-8 border-zinc-900 ring-zinc-500 ring rounded-xl w-full overflow-clip`
           )}
         >
-          <div className=" p-4 hidden lg:block">
-            <h1 className="text-xl md:text-3xl lg:text-4xl font-bold">
+          <motion.div variants={TextVariants} initial="hidden" whileInView="visible" className=" p-4 hidden lg:block">
+            <MainHeadingText className="text-xl md:text-3xl lg:text-4xl font-bold">
               {project.title}
-            </h1>
+            </MainHeadingText>
             <p
               className={cn(
                 "tracking-tight text-sm mt-1",
@@ -159,7 +176,7 @@ const Card = React.forwardRef<
             >
               {project.description}
             </p>
-          </div>
+          </motion.div>
           <motion.div
             animate={control}
             className={cn(

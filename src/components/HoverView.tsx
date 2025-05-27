@@ -18,7 +18,7 @@ const HoverView = ({isVisible,position}:HoverViewProps) => {
           style={{ x: position.x, y: position.y }}
           animate={{ scale: isVisible ? 1 : 0, opacity: isVisible ? 1 : 0 }}
           transition={{ type: "spring" }}
-          className="absolute border-2 border-white/30 -translate-x-[50%] -translate-y-[50%] bg-black/20 backdrop-blur-xl z-[999] size-24 rounded-full flex flex-col items-center justify-center pointer-events-none"
+          className="absolute z-[99999] border-2 border-white/30 -translate-x-[50%] -translate-y-[50%] bg-black/20 backdrop-blur-xl size-24 rounded-full flex flex-col items-center justify-center pointer-events-none"
         >
           <motion.div
             animate={{ scale: isVisible ? 1 : 0, opacity: isVisible ? 1 : 0 }}

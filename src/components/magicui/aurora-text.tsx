@@ -12,8 +12,17 @@ interface AuroraTextProps {
 export const AuroraText = memo(
   ({
     children,
-    className = "",
-    colors = ["#FF0080", "#7928CA", "#0070F3", "#38bdf8"],
+    className = "font-bold",
+    colors = [
+      "#FF007F", // hot pink
+      "#9D00FF", // neon violet
+      "#A020F0", // deep purple
+      "#FF00FF", // magenta
+      "#3F9FFF", // electric blue
+      "#C500FF", // acid purple
+      "#5D3FD3", // cyber grape
+      "#FF4F9A", // bubblegum pink
+    ],
     speed = 1,
   }: AuroraTextProps) => {
     const gradientStyle = {
@@ -37,7 +46,7 @@ export const AuroraText = memo(
         </span>
       </span>
     );
-  },
+  }
 );
 
 AuroraText.displayName = "AuroraText";

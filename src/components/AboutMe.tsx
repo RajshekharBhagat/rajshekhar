@@ -8,6 +8,7 @@ import MagicWand from "./MagicWand";
 import MaxWidthWrapper from "./MaxWidthWrapper";
 import { AuroraText } from "./magicui/aurora-text";
 import SocialIcons from "./SocialIcons";
+import MainHeadingText from "./MainHeadingText";
 
 const AboutMe = () => {
   const ref = useRef<HTMLDivElement | null>(null);
@@ -79,16 +80,17 @@ const AboutMe = () => {
             >
               KNOW ABOUT ME
             </motion.h1>
-            <motion.h1
+            <motion.div
               variants={TextVariants}
               initial="hidden"
               whileInView="visible"
-              className="text-3xl md:text-3xl lg:text-4xl font-bold lg:text-left text-center mt-5"
             >
+              <MainHeadingText className="text-3xl md:text-3xl lg:text-4xl font-bold lg:text-left text-center mt-5">
               Full Stack Developer building seamless experiences,{" "}
               <AuroraText>front</AuroraText> to
               <AuroraText> back</AuroraText>.
-            </motion.h1>
+              </MainHeadingText>
+            </motion.div>
             <motion.p
               variants={TextVariants}
               initial="hidden"

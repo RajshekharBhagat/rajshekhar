@@ -1,22 +1,26 @@
 'use client';
 import FeatureCard from '@/components/FeatureCard';
 import GetInTouch from '@/components/GetInTouch';
+import HoverButton from '@/components/HoverButton';
 import { Icons } from '@/components/Icons';
 import MaxWidthWrapper from '@/components/MaxWidthWrapper';
 import TechnologyUsedCard from '@/components/TechnologyUsedCard';
 import { buttonVariants } from '@/components/ui/button';
-import {projectsData} from '@/lib/data';
+import { projectsData } from '@/lib/data';
 import { AnimatePresence, motion } from 'framer-motion';
-import { ArrowUpRightIcon, StarIcon, ZapIcon } from 'lucide-react';
+import { StarIcon, ZapIcon } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { use, useEffect, useState } from 'react';
+import { FaExclamation } from 'react-icons/fa';
 
 
 const Page = ({params}:{params:Promise<{id:string}>}) => {
    const {id} = use(params)
     const project = projectsData.find((project) => project.id === Number(id))
     const [isExpended,setIsExpended] = useState<boolean>(false);
+    const router = useRouter()
     useEffect(() => {
       const handleScroll = () => {
         if(isExpended) {
@@ -31,8 +35,15 @@ const Page = ({params}:{params:Promise<{id:string}>}) => {
       }
     },[isExpended])
 
-    if(!project) {
-        return <div>Not Found</div>
+    if (!project) {
+      return (
+        <div className="aspect-square w-full grid place-content-center">
+          <div className="flex flex-col items-center space-y-2">
+            <FaExclamation className="size-24 text-zinc-300 animate-pulse duration-1000" />
+            <h1>Project not found</h1>
+          </div>
+        </div>
+      );
     }
   return (
     <section className='relative w-full min-h-screen overflow-x-hidden py-5'>
@@ -45,7 +56,7 @@ const Page = ({params}:{params:Promise<{id:string}>}) => {
                 <h1 className={'text-3xl md:text-5xl lg:text-6xl font-semibold'}>{project.title}</h1>
                 <div className='flex items-center gap-3'>
                     <Link href={project.githubLink} className={buttonVariants({variant:'ghost',className:'cursor-none'})}><Icons.Github className='size-6' /></Link>
-                    <Link href={project.liveLink} className={buttonVariants({variant:'outline',className:'text-black cursor-none'})}>Visit<ArrowUpRightIcon /></Link>
+                    <HoverButton onClick={() => router.push(project.liveLink) }>Visit</HoverButton>
                 </div>
             </div>
             <div className={'md:text-lg text-sm mt-4 tracking-tight lg:px-6 py-2'}>

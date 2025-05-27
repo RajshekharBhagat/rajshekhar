@@ -5,14 +5,12 @@ import { SmoothCursor } from "@/components/ui/smooth-cursor";
 import AuthProvider from "@/context/AuthProvider";
 import { ReactLenis } from "@/lib/ReactLenis";
 import { cn } from "@/lib/utils";
-import { Oxanium } from "next/font/google";
-import "./globals.css";
-import { Toaster } from "sonner";
 import { Metadata } from "next";
+import { Anta } from "next/font/google";
+import { Toaster } from "sonner";
+import "./globals.css";
 
-const oxanium = Oxanium({
-  subsets: ["latin-ext"],
-});
+const anta = Anta({weight:"400",subsets:['latin']})
 
 export const metadata:Metadata = {
   title: 'Rajshekhar Bhagat Portfolio',
@@ -22,8 +20,6 @@ export const metadata:Metadata = {
     url: 'http://rajshekhardev.vercel.app'
   }
 }
-
-
 
 export default function RootLayout({
   children,
@@ -35,7 +31,7 @@ export default function RootLayout({
       <ReactLenis root>
         <body
           className={cn(
-            oxanium.className,
+            anta.className,
             "relative bg-zinc-950 text-white min-h-screen h-full"
           )}
         >
@@ -44,9 +40,11 @@ export default function RootLayout({
             <SmoothCursor />
             <NavBar />
             <main className="relative flex flex-col min-h-[calc(100vh-3.5rem)]">
+                <div className="flex-1 flex flex-col h-full">
               <Transition>
                 {children}
               </Transition>
+                </div>
               <Footer />
               <Toaster />
             </main>
