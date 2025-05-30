@@ -32,7 +32,7 @@ const LoginModal = ({children,isOpen,setIsOpen}: LoginModalProps) => {
         <DialogContent className='max-w-lg bg-zinc-950 border-zinc-900 z-[9999]'>
             <DialogHeader className='flex items-center'>
                 <div className='relative aspect-square w-[20%] ring ring-zinc-900 rounded-md overflow-clip'>
-                    <Image src={'/RBLogo2.png'} alt='Main Logo' fill className='object-cover bg-center' />
+                    <Image src={'/logos/RB2.png'} alt='Main Logo' fill className='object-cover bg-center' />
                 </div>
                 <DialogTitle className='sr-only'>Login Modal</DialogTitle>
             </DialogHeader>
