@@ -118,8 +118,8 @@ const Page = ({params}:{params:Promise<{id:string}>}) => {
                Let&apos;s talk!
             </Link>
             </div>
-            <GetInTouch />
         </MaxWidthWrapper>
+            <GetInTouch />
     </section>
   )
 }

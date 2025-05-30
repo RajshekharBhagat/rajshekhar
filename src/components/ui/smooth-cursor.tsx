@@ -201,6 +201,7 @@ export function SmoothCursor({
         stiffness: 400,
         damping: 30,
       }}
+      className="hidden md:block"
     >
       {cursor}
     </motion.div>

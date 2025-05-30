@@ -8,6 +8,7 @@ import { cn } from "@/lib/utils";
 import { Metadata } from "next";
 import { Anta } from "next/font/google";
 import { Toaster } from "sonner";
+import {Analytics} from '@vercel/analytics/next'
 import "./globals.css";
 
 const anta = Anta({weight:"400",subsets:['latin']})
@@ -52,6 +53,7 @@ export default function RootLayout({
               <Toaster />
             </main>
           </AuthProvider>
+          <Analytics />
         </body>
       </ReactLenis>
     </html>

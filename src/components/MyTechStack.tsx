@@ -21,7 +21,7 @@ const MyTechStack = () => {
     hidden: {
       opacity: 0,
       scale: 0.95,
-      y: 50,
+      y: 20,
     },
     visible: {
       opacity: 1,
@@ -59,7 +59,7 @@ const MyTechStack = () => {
             variants={TextVariants}
             initial="hidden"
             whileInView="visible"
-            className="text-sm font-semibold text-zinc-50"
+            className="text-sm font-semibold text-zinc-50 my-3"
           >
             I CONSTANTLY TRY TO IMPROVE
           </motion.h1>
@@ -69,7 +69,7 @@ const MyTechStack = () => {
             whileInView="visible"
           >
             <MainHeadingText>
-              <AuroraText className="text-4xl md:text-5xl lg:text-6xl tracking-tight font-extrabold mt-3">
+              <AuroraText className="text-4xl md:text-5xl lg:text-6xl tracking-tight font-extrabold my-3">
                 My Tech Stack
               </AuroraText>
             </MainHeadingText>

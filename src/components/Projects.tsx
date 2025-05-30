@@ -19,7 +19,7 @@ const Projects = ({limit}:{limit?:number}) => {
     hidden: {
       opacity: 0,
       scale:0.95,
-      y:50,
+      y:30,
     },
     visible: {
       opacity:1,
