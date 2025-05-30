@@ -35,7 +35,7 @@ export default function Home() {
       </section>
       <section
         id="project"
-        className="relative w-full min-h-screen overflow-x-clip"
+        className="relative w-full min-h-screen overflow-clip"
       >
         <Projects limit={3}/>
         <div className="mt-6 w-full flex justify-center">

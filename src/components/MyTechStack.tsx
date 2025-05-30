@@ -37,21 +37,21 @@ const MyTechStack = () => {
   return (
     <div
       ref={ref}
-      className="relative flex flex-col items-center justify-center w-full h-full min-h-screen overflow-hidden"
+      className="relative flex flex-col items-center justify-center w-full h-full min-h-screen"
     >
       <motion.div
         style={{ scale, rotate }}
         className="absolute max-w-2xl aspect-square w-full mx-auto -z-10"
       >
         <Image
-          src={"/TechStackBG.jpg"}
+          src={"/backgrounds/TechStackBG.jpg"}
           fill
           className="object-cover bg-center aspect-square -z-10 blur-[2px]"
           priority
           alt={"TechStackBackground"}
         />
-        <motion.div className="absolute inset-0 -z-9 bg-gradient-to-b from-zinc-950 via-transparent to-zinc-950 pointer-events-none" />
-        <motion.div className="absolute inset-0 -z-[9] bg-gradient-to-l from-zinc-950 via-transparent to-zinc-950 pointer-events-none"></motion.div>
+        <motion.div className="absolute -inset-1 -z-9 bg-gradient-to-b from-zinc-950 via-transparent to-zinc-950 pointer-events-none" />
+        <motion.div className="absolute -inset-1 -z-[9] bg-gradient-to-l from-zinc-950 via-transparent to-zinc-950 pointer-events-none"></motion.div>
       </motion.div>
       <MaxWidthWrapper>
         <div className="flex flex-col items-center">

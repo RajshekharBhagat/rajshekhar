@@ -35,16 +35,17 @@ const Projects = ({limit}:{limit?:number}) => {
   const rotate = useTransform(scrollYProgress,[0,1],[0,180])
   return (
     <section ref={sectionRef} className="relative my-10 w-full h-full">
-      <motion.div style={{rotate}} className="sticky top-0 -z-10 max-w-[1600px] w-full h-[50dvh] md:h-screen mx-auto">
+      <motion.div style={{rotate}} className="sticky top-0 -z-50 max-w-[1600px] w-full h-[50dvh] md:h-screen mx-auto">
         <Image
-          src={"/projectsBG.jpg"}
+          src={"/backgrounds/projectsBG.jpg"}
           alt="Background Image"
           fill
+          priority
           className="md:object-contain blur-[2px] object-cover w-full mx-auto"
         />
-        <div className="absolute inset-0 bg-black/50" />
-        <div className="absolute inset-0 bg-gradient-to-r from-zinc-950 via-transparent to-zinc-950" />
-        <div className="absolute inset-0 bg-gradient-to-b from-zinc-950 via-transparent to-zinc-950" />
+        <div className="absolute -inset-1 bg-black/50" />
+        <div className="absolute -inset-1 bg-gradient-to-r from-zinc-950 via-transparent to-zinc-950" />
+        <div className="absolute -inset-1 bg-gradient-to-b from-zinc-950 via-transparent to-zinc-950" />
       </motion.div>
       <MaxWidthWrapper className="-mt-[50dvh] md:-mt-[100dvh]">
         <div className="">
