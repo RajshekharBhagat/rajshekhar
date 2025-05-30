@@ -4,17 +4,17 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from 'axios';
 import { LogOutIcon } from "lucide-react";
-import { signIn, signOut, useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { z } from "zod";
+import LoginModal from "./LoginModal";
+import { ShimmerButton } from "./magicui/shimmer-button";
 import { Button } from "./ui/button";
 import { Form, FormControl, FormField, FormItem, FormMessage } from "./ui/form";
 import { Textarea } from "./ui/textarea";
-import LoginModal from "./LoginModal";
-import { ShimmerButton } from "./magicui/shimmer-button";
 
 
 const GuestBookForm = () => {
@@ -71,7 +71,7 @@ const GuestBookForm = () => {
     );
   }
   return (
-    <div className="flex flex-col w-full items-center p-2 rounded-xl backdrop-blur-xs border-2 border-zinc-800 bg-black mt-5 gap-3">
+    <div className="flex flex-col w-full items-center p-2 rounded-xl backdrop-blur-xs border-2 border-zinc-800 bg-zinc-900 mt-5 gap-3">
       <div className="flex items-center w-full justify-between">
         <div className="flex items-center gap-2">
         <div className="relative size-10 overflow-hidden">
@@ -108,7 +108,7 @@ const GuestBookForm = () => {
               render={({field}) => (
                 <FormItem>
                   <FormControl>
-                  <Textarea className="border-zinc-900 active:ring-1  rounded-md p-2" {...field} placeholder="send me a message" />
+                  <Textarea className="border-zinc-950 active:ring-1 bg-zinc-800  rounded-md p-2" {...field} placeholder="send me a message" />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

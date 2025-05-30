@@ -11,7 +11,7 @@ export default withAuth(async function middleware(req) {
         if(!isAuth) {
             return NextResponse.redirect(new URL('/login',req.url));
         }
-        if(isAuth.email !== process.env.ADMIN_EMAIL) {
+        if(isAuth.email !== process.env.NEXT_PUBLIC_ADMIN_EMAIL) {
             return NextResponse.redirect(new URL('/', req.url));
         }
     }

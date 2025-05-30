@@ -16,7 +16,7 @@ const MyTechStack = () => {
     offset: ["start end", "end start"],
   });
   const scale = useTransform(scrollYProgress, [0, 1], [1, 1.5]);
-  const rotate = useTransform(scrollYProgress, [0, 1], [0, 60]);
+  const rotate = useTransform(scrollYProgress, [0, 1], [0, 90]);
   const TextVariants = {
     hidden: {
       opacity: 0,
@@ -41,7 +41,7 @@ const MyTechStack = () => {
     >
       <motion.div
         style={{ scale, rotate }}
-        className="absolute max-w-xl aspect-square w-full mx-auto -z-10"
+        className="absolute max-w-2xl aspect-square w-full mx-auto -z-10"
       >
         <Image
           src={"/TechStackBG.jpg"}

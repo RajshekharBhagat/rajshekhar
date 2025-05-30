@@ -34,13 +34,14 @@ const MessageCard = ({ message, sender }: MessageCardProps) => {
   return (
     <motion.div
       layout
+      layoutId={`guestbook-message-card-${message._id.toString()}`}
       style={{ transformOrigin: "center" }}
       variants={MessageCardVariants}
       initial="hidden"
       whileInView="visible"
       exit="exit"
       transition={{ duration: 0.3, ease: "easeInOut" }}
-      className="relative flex flex-col w-full h-full p-2 space-y-2 mt-4 rounded-md border border-zinc-800 bg-zinc-950 shadow-2xl shadow-white/5"
+      className="relative flex flex-col w-full h-full p-2 space-y-2 mt-4 rounded-md border border-zinc-800 bg-zinc-900 shadow-2xl shadow-white/5"
     >
       <div className="flex items-center gap-2">
         <div className="relative size-10 overflow-hidden">
@@ -57,8 +58,8 @@ const MessageCard = ({ message, sender }: MessageCardProps) => {
         </div>
       </div>
       <div className="flex flex-col w-full space-y-2">
-        <div className="p-2">
-          <h1 className="text-sm text-left">{message.message}</h1>
+        <div className="p-2 h-full">
+          <h1 className="text-sm text-left break-words whitespace-pre-wrap">{message.message}</h1>
         </div>
         {
           canDelete && (<div className="flex items-center justify-end">
@@ -71,7 +72,6 @@ const MessageCard = ({ message, sender }: MessageCardProps) => {
           </Button>
         </div>)
         }
-        
       </div>
     </motion.div>
   );

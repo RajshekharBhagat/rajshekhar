@@ -14,14 +14,14 @@ export const AuroraText = memo(
     children,
     className = "font-bold",
     colors = [
-      "#FF007F", // hot pink
-      "#9D00FF", // neon violet
-      "#A020F0", // deep purple
-      "#FF00FF", // magenta
-      "#3F9FFF", // electric blue
-      "#C500FF", // acid purple
-      "#5D3FD3", // cyber grape
-      "#FF4F9A", // bubblegum pink
+      "#FF007F",
+      "#9D00FF",
+      "#A020F0",
+      "#FF00FF",
+      "#3F9FFF",
+      "#C500FF",
+      "#5D3FD3",
+      "#FF4F9A",
     ],
     speed = 1,
   }: AuroraTextProps) => {

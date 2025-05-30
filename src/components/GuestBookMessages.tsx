@@ -30,17 +30,18 @@ const GuestBookMessages = () => {
   return (
     <div className="relative h-full w-full">
       <div className="flex flex-col space-y-3">
+        <AnimatePresence>
         {messages.map((message) => {
           const sender = message.sender as User;
           return (
-            <AnimatePresence key={message._id.toString()}>
               <MessageCard
+                key={message._id.toString()}
                 message={message}
                 sender={sender}
               />
-            </AnimatePresence>
-          );
-        })}
+            );
+          })}
+        </AnimatePresence>
       </div>
     </div>
   );

@@ -1,5 +1,5 @@
 import React from "react";
-import { FaLinkedinIn, FaGithub, FaTwitter, FaInstagram } from "react-icons/fa";
+import { FaLinkedinIn, FaGithub, FaTwitter, FaInstagram, FaCode, FaDiscord } from "react-icons/fa";
 
 type IconProps = React.SVGProps<SVGSVGElement> & {
   className?: string;
@@ -16,6 +16,9 @@ export const TwitterXIcon = ({ className = "", ...props }: IconProps) => (
 );
 export const InstagramIcon = ({ className = "", ...props }: IconProps) => (
   <FaInstagram className={className} {...props} />
+);
+export const leetCodeIcon = ({ className = "", ...props }: IconProps) => (
+  <FaCode className={className} {...props} />
 );
 
 export const htmlIcon = ({ className = "", ...props }: IconProps) => (
@@ -317,6 +320,9 @@ export const javascriptIcon = ({ className = "", ...props }: IconProps) => (
     />
   </svg>
 );
+export const discordIcon = ({ className = "", ...props }: IconProps) => (
+  <FaDiscord className={className} />
+);
 
 export const Icons = {
   LinkedIn: LinkedInIcon,
@@ -340,4 +346,6 @@ export const Icons = {
   Postman: postmanIcon,
   Vercel: vercelIcon,
   Redux: reduxIcon,
+  LeetCode: leetCodeIcon,
+  Discord: discordIcon,
 };

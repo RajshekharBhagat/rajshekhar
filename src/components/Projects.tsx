@@ -8,11 +8,11 @@ import { AuroraText } from "./magicui/aurora-text";
 import MainHeadingText from "./MainHeadingText";
 
 
-const Projects = () => {
+const Projects = ({limit}:{limit?:number}) => {
   const sectionRef = useRef(null);
   const {scrollYProgress} = useScroll({
     target: sectionRef,
-    offset:['start end','40% start']
+    offset:['start end', 'end 50%']
   })
 
   const TextVariants = {
@@ -32,35 +32,33 @@ const Projects = () => {
     }
   }
 
-  const rotate = useTransform(scrollYProgress,[0,1],[0,-90])
-  const scale = useTransform(scrollYProgress,[0,1],[0.5,1.5])
-
+  const rotate = useTransform(scrollYProgress,[0,1],[0,180])
   return (
-    <section ref={sectionRef} className="relative w-full h-full overflow-x-clip">
-      <motion.div style={{rotate,scale}} className="absolute max-w-2xl aspect-square w-full mx-auto -top-20 inset-0 -z-10">
+    <section ref={sectionRef} className="relative my-10 w-full h-full">
+      <motion.div style={{rotate}} className="sticky top-0 -z-10 max-w-[1600px] w-full h-[50dvh] md:h-screen mx-auto">
         <Image
           src={"/projectsBG.jpg"}
           alt="Background Image"
           fill
-          className="object-cover w-full mx-auto"
+          className="md:object-contain blur-[2px] object-cover w-full mx-auto"
         />
-        <div className="absolute inset-0 bg-black/40" />
+        <div className="absolute inset-0 bg-black/50" />
         <div className="absolute inset-0 bg-gradient-to-r from-zinc-950 via-transparent to-zinc-950" />
         <div className="absolute inset-0 bg-gradient-to-b from-zinc-950 via-transparent to-zinc-950" />
       </motion.div>
-      <MaxWidthWrapper>
-        <div className="my-3 md:my-6 lg:my-30">
+      <MaxWidthWrapper className="-mt-[50dvh] md:-mt-[100dvh]">
+        <div className="">
           <motion.h1 variants={TextVariants} initial="hidden" whileInView="visible" className="uppercase font-semibold text-zinc-400 text-center my-4">
             My Work
           </motion.h1>
           <motion.div variants={TextVariants} initial="hidden" whileInView="visible">
-          <MainHeadingText className="text-3xl md:text-4xl lg:text-5xl font-semibold text-center">
+          <MainHeadingText className="text-3xl md:text-4xl lg:text-5xl font-semibold text-center my-5">
             Crafted With <AuroraText>Code</AuroraText>, Fueled By{" "}
             <AuroraText>Passion</AuroraText>
           </MainHeadingText>
           </motion.div>
         </div>
-        <ProjectCard />
+        <ProjectCard limit={limit} />
       </MaxWidthWrapper>
     </section>
   );

@@ -2,7 +2,7 @@
 import { motion } from "framer-motion";
 import { Calendar1Icon } from "lucide-react";
 import Link from "next/link";
-import React, { Dispatch, SetStateAction } from "react";
+import React, { Dispatch, SetStateAction, useEffect } from "react";
 import SocialIcons from "./SocialIcons";
 import {
   Drawer,
@@ -15,7 +15,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
 import { useForm } from "react-hook-form";
 import {
   PersonalMessageSchema,
-  PersonalMessageType,
+  PersonalMessageRequestType,
 } from "@/schema/Message.Schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useSession } from "next-auth/react";
@@ -23,6 +23,9 @@ import { Form, FormControl, FormField, FormItem, FormMessage } from "./ui/form";
 import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
 import { Button } from "./ui/button";
+import { useSendPersonalMessage } from "@/hooks/useSendPersonalMessage";
+import { toast } from "sonner";
+import { useQueryClient } from "@tanstack/react-query";
 
 const ContactDrawer = ({
   children,
@@ -33,18 +36,44 @@ const ContactDrawer = ({
   open: boolean;
   setOpen: Dispatch<SetStateAction<boolean>>;
 }) => {
-  const { data: session } = useSession();
+  const { data: session, } = useSession();
+  const queryClient = useQueryClient();
+  const { mutate: sendMessage,isPending } = useSendPersonalMessage({
+    onSuccess: (data) => {
+      if (!data.success) {
+        toast("Something went wrong", {
+          description: data.message,
+        });
+      }
+      toast(data.message);
+      queryClient.invalidateQueries({queryKey:['get-personal-messages']})
+      form.reset();
+    },
+    onError: (Error) => {
+      toast(Error.message);
+    },
+  });
   const form = useForm({
     resolver: zodResolver(PersonalMessageSchema),
     defaultValues: {
-      email: session ? session.user.email : "",
-      name: session ? session.user.name : "",
+      _id: "",
+      email: "",
+      name: "",
       message: "",
     },
   });
-  const onSubmit = (data: PersonalMessageType) => {
-    console.log(data);
+  const onSubmit = (data: PersonalMessageRequestType) => {
+    sendMessage(data);
   };
+
+  useEffect(() => {
+    if (session) {
+      form.setValue("_id", session.user.id);
+      form.setValue("email", session.user.email);
+      form.setValue("name", session.user.name);
+    }
+  }, [session, form]);
+
   return (
     <Drawer open={open} onClose={() => setOpen(false)}>
       <div className="cursor-none">{children}</div>
@@ -60,7 +89,10 @@ const ContactDrawer = ({
               <TabsTrigger value="connect">Quick Connect</TabsTrigger>
               <TabsTrigger value="message">Message</TabsTrigger>
             </TabsList>
-            <TabsContent value="connect" className="flex flex-col w-full h-full mt-4">
+            <TabsContent
+              value="connect"
+              className="flex flex-col w-full h-full mt-4"
+            >
               <div className="grid md:grid-cols-2 gap-3">
                 <Link
                   href="mailto:rajbhagat27889@gmail.com?subject=Let's%20catch%20up%20for%20a%20cool%20opportunity!"
@@ -81,6 +113,7 @@ const ContactDrawer = ({
                     </div>
                   </div>
                 </Link>
+                <Link href={'/cal'}>
                 <div className="flex flex-col bg-zinc-900 rounded-xl ring ring-zinc-700 hover:ring-blue-900">
                   <div className="p-3 rounded-t-xl flex items-center gap-3 bg-gradient-to-r from-blue-950 to-blue-950/20">
                     <Calendar1Icon className="text-blue-600" />
@@ -93,6 +126,7 @@ const ContactDrawer = ({
                     </p>
                   </div>
                 </div>
+              </Link>
               </div>
               <div className="flex justify-center mt-5 rounded-xl overflow-clip">
                 <div className="bg-green-800/20 w-full h-full py-2 flex items-center gap-6 justify-center">
@@ -175,6 +209,7 @@ const ContactDrawer = ({
                     />
                     <Button
                       type="submit"
+                      disabled={isPending}
                       className="w-full bg-green-500/50 hover:scale-100 hover:bg-green-500/60 ring ring-green-500"
                     >
                       Send

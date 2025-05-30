@@ -1,5 +1,4 @@
 "use client";
-
 import { cn } from "@/lib/utils";
 import { motion, useMotionValueEvent, useScroll } from "framer-motion";
 import { usePathname, useRouter } from "next/navigation";
@@ -14,11 +13,14 @@ import SearchBox from "./SearchBox";
 import ContactDrawer from "./ContactDrawer";
 import Link from "next/link";
 import Image from "next/image";
+import { useSession } from "next-auth/react";
 
 const NavBar = () => {
   const navRef = useRef(null);
+  const { data: session } = useSession();
   const [hidden, setHidden] = useState<boolean>(false);
   const { scrollY } = useScroll();
+  const [isAdmin,setIsAdmin] = useState<boolean>(false); 
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     const previous = scrollY.getPrevious();
@@ -29,6 +31,14 @@ const NavBar = () => {
       setHidden(false);
     }
   });
+
+  useEffect(() => {
+    if(session) {
+      if(session.user.email === process.env.NEXT_PUBLIC_ADMIN_EMAIL) {
+        setIsAdmin(true);
+      }
+    }
+  },[session])
 
   return (
     <motion.nav
@@ -43,11 +53,30 @@ const NavBar = () => {
       className="fixed z-50 top-0 w-full h-14 backdrop-blur-[1px] bg-gradient-to-b from-black/80 to-transparent"
     >
       <div className="max-w-[1500px] w-full mx-auto h-full px-3 lg:px-10 flex items-center justify-between">
-        <Link href={'/'} className="relative h-6 w-6 aspect-square cursor-none">
-          <Image src={'/RBLogo.png'} alt="Logo Image" quality={100} fill  className="object-contain aspect-square bg-center" />
+        <Link
+          href={"/"}
+          className="relative w-8 aspect-square cursor-none"
+        >
+          <Image
+            src={"/logos/RB1.png"}
+            alt="Logo Image"
+            quality={100}
+            fill
+            className="object-cover bg-center"
+          />
         </Link>
         <SlideTab />
-        <div>
+        <div className="flex items-center">
+          {
+            isAdmin && (
+              <Link
+              className="mr-2 hover:underline hover:underline-offset-2 transition-all duration-300"
+              href={"/dashboard"}
+            >
+              Dashboard
+            </Link>
+            )
+          }
           <SearchBox />
         </div>
       </div>
@@ -106,7 +135,7 @@ const SlideTab = () => {
         opacity: 1,
       });
     }
-  }, [pathname,activeTab]);
+  }, [pathname, activeTab]);
 
   return (
     <ul

@@ -253,8 +253,8 @@ const SearchBox = () => {
               </Link>
             </CommandGroup>
           </CommandList>
-          <div className="flex px-3 py-2 h-10 w-full items-end justify-between border-t border-white">
-            <SocialIcons />
+          <div className="flex items-center justify-between px-3 h-10 border-t border-white">
+            <SocialIcons className="" />
             <div className="flex items-center gap-1">
               <div className="flex items-center gap-1">
                 <ArrowUp className=" p-1 bg-zinc-800 rounded-sm" />

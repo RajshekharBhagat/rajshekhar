@@ -30,7 +30,7 @@ const HoverProfile = () => {
   }
 
   const ShootConfetti = () => {
-    const end = Date.now() + 3 * 1000; // 3 seconds
+    const end = Date.now() + 1 * 1000; // 3 seconds
     const colors = ["#a786ff", "#fd8bbc", "#eca184", "#f8deb1"];
  
     const frame = () => {
@@ -60,21 +60,26 @@ const HoverProfile = () => {
   };
 
   return (
-    <motion.div ref={divRef} onMouseMove={(e) => handleMouseMove(e)} onMouseLeave={handleMouseLeave} animate={{rotateY:x === 0 ? '360deg' : '0deg'}} transition={{duration:0.5}} className="relative overflow-clip rounded-xl shadow-xl shadow-white/10 w-[275px] aspect-[239/261] grid place-items-center">
+    <motion.div ref={divRef} onMouseMove={(e) => handleMouseMove(e)} onMouseLeave={handleMouseLeave} animate={{rotateY:x === 0 ? '360deg' : '0deg'}} transition={{duration:0.5}} className="relative  w-[275px] aspect-[239/261] grid place-items-center">
+      <h1 aria-hidden='true' className="hidden lg:block select-none absolute -top-3 -translate-y-[50%] rotate-45 animate-bounce -right-3 translate-x-[50%] font-black text-lg">
+        {isVisible ? "Fullstack Magic!" : "Hover Me"}
+      </h1>
+      <div className="relative overflow-clip w-full h-full rounded-xl shadow-2xl shadow-white/30">
       <Image
         src={"/profilePicture2.png"}
         alt="Profile Picture"
         fill
         className="object-contain"
-      />
+        />
       <motion.div style={{opacity:x}} className="absolute hidden lg:block w-full h-full bg-black">
         <Image
           src={"/RBLogo2.png"}
           alt={"Logo Image"}
           fill
           className="object-cover"
-        />
+          />
       </motion.div>
+          </div>
     </motion.div>
   );
 };

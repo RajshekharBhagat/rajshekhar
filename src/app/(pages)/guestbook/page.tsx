@@ -11,7 +11,7 @@ const page = () => {
     <section className="relative min-h-screen w-full flex flex-col items-center overflow-x-clip">
       <div className="absolute inset-x-0 h-screen -z-10">
         <Image
-          src="/black-background.jpg"
+          src="/backgrounds/black-background.jpg"
           alt="background image"
           fill
           className="object-cover"

@@ -13,8 +13,11 @@ import "./globals.css";
 const anta = Anta({weight:"400",subsets:['latin']})
 
 export const metadata:Metadata = {
-  title: 'Rajshekhar Bhagat Portfolio',
-  icons: '/RBLogo2.png',
+  title:{
+    default: "Rajshekhar Bhagat",
+    template: "%s | Rajshekhar Bhagat"
+  },
+  icons: '/logos/RB1.png',
   authors:{
     name: 'Rajshekhar Bhagat',
     url: 'http://rajshekhardev.vercel.app'

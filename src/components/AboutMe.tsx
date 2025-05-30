@@ -70,7 +70,7 @@ const AboutMe = () => {
     >
       <MagicWand position={WantPosition} />
       <MaxWidthWrapper>
-        <div className="grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-6 mb-10">
+        <div className="grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-6 py-10">
           <div className="max-w-3xl flex flex-col items-center lg:items-start justify-center w-full mx-auto">
             <motion.h1
               variants={TextVariants}
@@ -136,7 +136,7 @@ const AboutMe = () => {
               </Link>
             </motion.div>
           </div>
-          <div className="flex flex-col items-center justify-center">
+          <div className="relative flex flex-col items-center justify-center">
             <HoverProfile />
           </div>
         </div>

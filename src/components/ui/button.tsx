@@ -12,13 +12,13 @@ const buttonVariants = cva(
         default:
           "bg-zinc-950 hover:bg-zinc-900 ring ring-white/10 hover:ring-white/15",
         destructive:
-          "bg-zinc-950 hover:bg-red-950 ring ring-red-500/20 hover:ring-red-500/30",
+          "bg-zinc-950 hover:bg-red-950 ring ring-red-500/20 hover:ring-red-500/30 text-red-950",
         outline:
-          "border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50",
+          "border bg-zinc-950 shadow-xs hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50",
         secondary:
           "bg-secondary text-secondary-foreground shadow-xs hover:bg-secondary/80",
         ghost:
-          "hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50",
+          "hover:bg-zinc-700 dark:hover:bg-accent/50",
         link: "text-primary underline-offset-4 hover:underline",
       },
       size: {

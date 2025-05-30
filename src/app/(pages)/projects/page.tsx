@@ -3,8 +3,8 @@ import Projects from "@/components/Projects";
 
 const Page = () => {
   return (
-    <div className="mt-16 lg:mt-0">
-      <Projects />
+    <div className="py-20 overflow-x-clip">
+      <Projects/>
       <GetInTouch />
     </div>
   );

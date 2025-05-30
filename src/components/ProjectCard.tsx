@@ -16,9 +16,10 @@ import { projectsData } from "@/lib/data";
 import MainHeadingText from "./MainHeadingText";
 
 
-const ProjectCard = () => {
+const ProjectCard = ({limit}:{limit?:number}) => {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const refs = useRef<(HTMLDivElement | null)[]>([]);
+  const visibleProjects = limit ? projectsData.slice(0,limit) : projectsData;
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -45,7 +46,7 @@ const ProjectCard = () => {
   return (
     <div className="relative w-full lg:flex">
       <div className="flex flex-col h-full gap-y-6 md:gap-y-24 lg:max-w-[65%]">
-        {projectsData.map((project, index) => (
+        {visibleProjects.map((project, index) => (
           <Card
             key={project.id}
             project={project}
@@ -58,8 +59,8 @@ const ProjectCard = () => {
       </div>
       <div className="hidden lg:block lg:w-[35%] py-5 px-2 overflow-x-clip">
         <div className="sticky top-20 w-full h-[30rem]">
-          {projectsData[currentIndex] && (
-            <ProjectDetails key={projectsData[currentIndex].id} project={projectsData[currentIndex]} />
+          {visibleProjects[currentIndex] && (
+            <ProjectDetails key={visibleProjects[currentIndex].id} project={visibleProjects[currentIndex]} />
           )}
         </div>
       </div>
@@ -104,7 +105,7 @@ const Card = React.forwardRef<
       y:0,
       transition: {
         type:'spring',
-        duration:0.75
+        duration:1
       }
     }
   }
